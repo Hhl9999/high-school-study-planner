@@ -1,0 +1,1808 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高中生高效讀書計畫與每週時間規劃系統</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f3f6fc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #4338ca;
+      --primary-light: #e0e7ff;
+      --accent: #0ea5e9;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+
+      /* 高中科目主題色標 */
+      --subj-chinese: #ea580c;
+      --subj-english: #0284c7;
+      --subj-math: #6366f1;
+      --subj-science: #059669;
+      --subj-social: #d97706;
+      --subj-exam: #8b5cf6;
+      --subj-self: #db2777;
+      --subj-rest: #94a3b8;
+
+      /* 優先度顏色 */
+      --p1-bg: #fef2f2;
+      --p1-text: #b91c1c;
+      --p1-border: #f87171;
+
+      --p2-bg: #f5f3ff;
+      --p2-text: #6d28d9;
+      --p2-border: #c4b5fd;
+
+      --p3-bg: #fffbeb;
+      --p3-text: #b45309;
+      --p3-border: #fde68a;
+
+      --p4-bg: #f0fdf4;
+      --p4-text: #15803d;
+      --p4-border: #bbf7d0;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.08);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      padding: 24px 20px;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    /* 頂部激勵橫幅與考試倒數 */
+    .hero-banner {
+      background: linear-gradient(135deg, #312e81 0%, #4338ca 35%, #0284c7 75%, #06b6d4 100%);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      color: #fff;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 30px -8px rgba(67, 56, 202, 0.45);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-content p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      margin-top: 6px;
+    }
+
+    .hero-quote {
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 4px 12px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-top: 8px;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    /* 倒數計時與時數統計小卡 */
+    .hero-widgets {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .exam-countdown-box {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: var(--radius-md);
+      padding: 10px 18px;
+      text-align: center;
+      min-width: 130px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .exam-countdown-box:hover {
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .exam-title {
+      font-size: 0.78rem;
+      opacity: 0.9;
+      font-weight: 600;
+    }
+
+    .exam-days {
+      font-size: 1.8rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 2px 0;
+    }
+
+    .exam-date-sub {
+      font-size: 0.72rem;
+      opacity: 0.8;
+    }
+
+    .stat-badge {
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px);
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 120px;
+    }
+
+    .stat-badge span {
+      font-size: 0.78rem;
+      opacity: 0.88;
+    }
+
+    .stat-badge strong {
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
+    /* 導航切換列 */
+    .nav-tabs-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-tabs {
+      display: inline-flex;
+      background: #e2e8f0;
+      padding: 5px;
+      border-radius: var(--radius-md);
+      gap: 4px;
+    }
+
+    .tab-btn {
+      border: none;
+      background: transparent;
+      padding: 9px 20px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    /* 科目顏色標籤列 */
+    .subject-pill-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      background: #fff;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--card-border);
+      font-size: 0.8rem;
+    }
+
+    .subj-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 主架構佈局 */
+    .page-section {
+      display: none;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    /* ===================================================
+       每週時程規劃表 (WEEKLY TIMETABLE)
+       =================================================== */
+    .timetable-wrapper {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .timetable-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .timetable-header h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-main);
+    }
+
+    .timetable-sub {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+
+    .timetable-container {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--card-border);
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 880px;
+      text-align: left;
+    }
+
+    .schedule-table th, .schedule-table td {
+      border: 1px solid #e2e8f0;
+      padding: 10px 10px;
+    }
+
+    .schedule-table th {
+      background: #f8fafc;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+      text-align: center;
+    }
+
+    .schedule-table th.time-col {
+      width: 150px;
+      background: #f1f5f9;
+    }
+
+    .schedule-table th.weekend {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .time-slot-label {
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #334155;
+      background: #f8fafc;
+    }
+
+    .time-slot-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* 課表單元格 (Cell) 樣式 */
+    .schedule-cell {
+      height: 90px;
+      vertical-align: top;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      background: #ffffff;
+      position: relative;
+    }
+
+    .schedule-cell:hover {
+      background: #f8fafc;
+      outline: 2px solid var(--primary);
+      z-index: 2;
+    }
+
+    .cell-empty {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #cbd5e1;
+      font-size: 0.75rem;
+      border: 1px dashed transparent;
+      border-radius: 6px;
+    }
+
+    .cell-empty:hover {
+      border-color: #94a3b8;
+      color: #64748b;
+    }
+
+    .cell-item {
+      height: 100%;
+      border-radius: 6px;
+      padding: 6px 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+      position: relative;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    }
+
+    .cell-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .cell-badge {
+      font-size: 0.68rem;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .cell-content {
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin: 4px 0;
+      line-height: 1.25;
+      word-break: break-all;
+    }
+
+    .cell-duration {
+      font-size: 0.7rem;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    /* 科目卡片背景色系 */
+    .bg-chinese { background: linear-gradient(135deg, #f97316, #ea580c); }
+    .bg-english { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
+    .bg-math { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+    .bg-science { background: linear-gradient(135deg, #10b981, #059669); }
+    .bg-social { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .bg-exam { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+    .bg-self { background: linear-gradient(135deg, #ec4899, #db2777); }
+    .bg-cram { background: linear-gradient(135deg, #64748b, #475569); }
+
+    /* 每週統計小面板 */
+    .timetable-summary {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      padding: 16px;
+      background: #f8fafc;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--card-border);
+    }
+
+    .summary-card {
+      background: white;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .summary-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .summary-text p {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .summary-text strong {
+      font-size: 1.15rem;
+      color: var(--text-main);
+    }
+
+    /* ===================================================
+       任務矩陣與排程清單 (TASKS & EISENHOWER MATRIX)
+       =================================================== */
+    .two-col-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 1040px) {
+      .two-col-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-main);
+    }
+
+    /* 表單元件 */
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 5px;
+    }
+
+    .form-control, .form-select {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--card-border);
+      font-size: 0.88rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background: #3730a3;
+    }
+
+    /* 番茄鐘模組 */
+    .pomodoro-card {
+      background: linear-gradient(150deg, #ffffff 0%, #f1f5f9 100%);
+      border: 1px solid #cbd5e1;
+    }
+
+    .timer-display {
+      font-size: 2.8rem;
+      font-weight: 900;
+      text-align: center;
+      letter-spacing: 2px;
+      font-variant-numeric: tabular-nums;
+      color: var(--primary);
+      margin: 8px 0;
+    }
+
+    .timer-task-label {
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .timer-controls {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    /* 四象限矩陣網格 */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .matrix-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .matrix-cell {
+      background: white;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--card-border);
+      padding: 16px;
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .matrix-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .matrix-header.p1 { border-color: var(--p1-border); }
+    .matrix-header.p2 { border-color: var(--p2-border); }
+    .matrix-header.p3 { border-color: var(--p3-border); }
+    .matrix-header.p4 { border-color: var(--p4-border); }
+
+    .matrix-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-count {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    /* 任務項目清單 */
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-grow: 1;
+    }
+
+    .task-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      transition: all 0.2s;
+    }
+
+    .task-card:hover {
+      box-shadow: var(--shadow);
+      border-color: #cbd5e1;
+    }
+
+    .task-card.completed {
+      opacity: 0.55;
+      background: #f8fafc;
+    }
+
+    .task-card.completed .task-text {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    .task-checkbox {
+      margin-top: 3px;
+      width: 17px;
+      height: 17px;
+      cursor: pointer;
+      accent-color: var(--primary);
+    }
+
+    .task-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .task-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .task-text {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-main);
+      word-break: break-word;
+    }
+
+    .task-notes {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+      line-height: 1.35;
+    }
+
+    .task-tags {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .tag-subject {
+      background: #eef2ff;
+      color: #4338ca;
+    }
+
+    .tag-time {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .priority-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      border: 1px solid transparent;
+    }
+
+    .priority-p1 { background: var(--p1-bg); color: var(--p1-text); border-color: var(--p1-border); }
+    .priority-p2 { background: var(--p2-bg); color: var(--p2-text); border-color: var(--p2-border); }
+    .priority-p3 { background: var(--p3-bg); color: var(--p3-text); border-color: var(--p3-border); }
+    .priority-p4 { background: var(--p4-bg); color: var(--p4-text); border-color: var(--p4-border); }
+
+    .action-icon-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 3px;
+      border-radius: 4px;
+      transition: all 0.15s;
+    }
+
+    .action-icon-btn:hover {
+      background: #f1f5f9;
+      color: var(--text-main);
+    }
+
+    .action-icon-btn.delete:hover {
+      background: #fee2e2;
+      color: var(--danger);
+    }
+
+    /* 彈出視窗 (Modal) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: white;
+      border-radius: var(--radius-md);
+      max-width: 480px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 30px 10px;
+      color: #94a3b8;
+      font-size: 0.85rem;
+    }
+
+    .subject-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      color: #fff;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 頂部高光橫幅與學測/段考倒數 -->
+  <div class="hero-banner">
+    <div class="hero-content">
+      <h1>
+        <span>🎓</span>
+        高中生高效讀書計畫與每週排程系統
+      </h1>
+      <p>平衡「段考死線」與「學測核心長遠底子」，聰明規劃每一堂自習與放學黃金時段</p>
+      <div class="hero-quote" id="daily-quote">
+        💡 今日座右銘：「不積跬步，無以至千里。把每一次自習當成段考前最後一戰！」
+      </div>
+    </div>
+
+    <div class="hero-widgets">
+      <!-- 倒數計時器 (點擊可修改考期) -->
+      <div class="exam-countdown-box" id="countdown-btn" title="點擊修改目標考試與日期">
+        <div class="exam-title" id="exam-target-name">🎯 下次重大段考</div>
+        <div class="exam-days"><span id="exam-countdown-days">14</span> <span style="font-size: 0.9rem; font-weight: 600;">天</span></div>
+        <div class="exam-date-sub" id="exam-target-date">2026-11-21</div>
+      </div>
+
+      <div class="stat-badge">
+        <span>每週自習目標</span>
+        <strong id="stat-weekly-hours">0 / 25 小時</strong>
+      </div>
+
+      <div class="stat-badge">
+        <span>今日讀書時數</span>
+        <strong id="stat-today-time">0 分鐘</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- 分頁導航列與科目色彩圖例 -->
+  <div class="nav-tabs-wrapper">
+    <div class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-schedule">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        每週讀書可用時間課表 (填寫與排程)
+      </button>
+      <button class="tab-btn" data-tab="tab-tasks">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        科目讀書任務與四象限優先級
+      </button>
+    </div>
+
+    <!-- 高中學科標準配色指示 -->
+    <div class="subject-pill-bar">
+      <span style="font-weight: 700; color: var(--text-muted); margin-right: 4px;">學科色標：</span>
+      <span class="subj-indicator"><span class="dot" style="background: var(--subj-chinese);"></span>國文</span>
+      <span class="subj-indicator"><span class="dot" style="background: var(--subj-english);"></span>英文</span>
+      <span class="subj-indicator"><span class="dot" style="background: var(--subj-math);"></span>數學A/B</span>
+      <span class="subj-indicator"><span class="dot" style="background: var(--subj-science);"></span>自然 (物/化/生/地)</span>
+      <span class="subj-indicator"><span class="dot" style="background: var(--subj-social);"></span>社會 (歷/地/公)</span>
+      <span class="subj-indicator"><span class="dot" style="background: var(--subj-exam);"></span>模考/訂正</span>
+      <span class="subj-indicator"><span class="dot" style="background: var(--subj-self);"></span>自主學習</span>
+    </div>
+  </div>
+
+  <!-- =============================================================
+       分頁一：每週讀書可用時間規劃表 (可填寫表格)
+       ============================================================= -->
+  <section id="tab-schedule" class="page-section active">
+    <div class="timetable-wrapper">
+      <div class="timetable-header">
+        <div>
+          <h2>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            每週讀書時段填寫與排程表
+          </h2>
+          <p class="timetable-sub">💡 點擊任何空格即可填入「讀書科目、單元章節或補習狀態」，直覺安排週一至週日作息！</p>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-secondary" id="btn-export-schedule" title="列印或儲存為 PDF">🖨️ 列印週課表</button>
+          <button class="btn-secondary" id="btn-reset-schedule" style="color: var(--danger);">🔄 重置預設範本</button>
+        </div>
+      </div>
+
+      <!-- 每週表格 -->
+      <div class="timetable-container">
+        <table class="schedule-table" id="schedule-table">
+          <thead>
+            <tr>
+              <th class="time-col">時段 / 星期</th>
+              <th>週一 (Mon)</th>
+              <th>週二 (Tue)</th>
+              <th>週三 (Wed)</th>
+              <th>週四 (Thu)</th>
+              <th>週五 (Fri)</th>
+              <th class="weekend">週六 (Sat) ☀️</th>
+              <th class="weekend">週日 (Sun) ☀️</th>
+            </tr>
+          </thead>
+          <tbody id="schedule-body">
+            <!-- 透過 JS 動態建立時段列與單元格 -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 每週各科時間配置統計 -->
+      <div class="timetable-summary">
+        <div class="summary-card">
+          <div class="summary-icon" style="background: #eef2ff; color: #4338ca;">⏳</div>
+          <div class="summary-text">
+            <p>本週總規劃時長</p>
+            <strong id="sum-total-hours">0 小時</strong>
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon" style="background: #eff6ff; color: #0284c7;">📐</div>
+          <div class="summary-text">
+            <p>數學 / 自然 (重理科)</p>
+            <strong id="sum-stem-hours">0 小時</strong>
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon" style="background: #fef2f2; color: #ea580c;">📖</div>
+          <div class="summary-text">
+            <p>國文 / 英文 (雙語語文)</p>
+            <strong id="sum-lang-hours">0 小時</strong>
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon" style="background: #fdf4ff; color: #a855f7;">📝</div>
+          <div class="summary-text">
+            <p>歷屆模考與弱點訂正</p>
+            <strong id="sum-exam-hours">0 小時</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       分頁二：科目讀書任務與四象限優先級
+       ============================================================= -->
+  <section id="tab-tasks" class="page-section">
+    <div class="two-col-layout">
+      <!-- 左欄：新增任務表單 + 專注番茄鐘 -->
+      <aside>
+        <div class="card">
+          <h2 class="card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            新增高中讀書任務
+          </h2>
+          <form id="task-form">
+            <div class="form-group">
+              <label for="task-title">科目與研讀單元 *</label>
+              <input type="text" id="task-title" class="form-control" placeholder="例：數A 第3章向量習題、英文 7000 單 Unit 15" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="task-subject">高中學科 *</label>
+                <select id="task-subject" class="form-select">
+                  <option value="math">📐 數學 (數A/數B)</option>
+                  <option value="english">🔤 英文 (單字/閱測/作文)</option>
+                  <option value="chinese">🏮 國文 (古文30/語表/作文)</option>
+                  <option value="science">🔬 自然 (物理/化學/生物/地科)</option>
+                  <option value="social">🌍 社會 (歷史/地理/公民)</option>
+                  <option value="exam">📝 模考衝刺 & 弱點訂正</option>
+                  <option value="self">💡 自主學習 / 學習歷程</option>
+                  <option value="cram">🏫 學校輔導 / 補習進度</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="task-priority">優先等級 *</label>
+                <select id="task-priority" class="form-select">
+                  <option value="p1">🔥 P1 緊急且重要 (段考死線/極弱科)</option>
+                  <option value="p2" selected>⭐ P2 重要不緊急 (學測底子累積)</option>
+                  <option value="p3">⚡ P3 緊急不重要 (隨堂小考/繳交作業)</option>
+                  <option value="p4">🌱 P4 不急不重 (課外閱讀/零碎整理)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="task-duration">預估時長 (分鐘)</label>
+                <input type="number" id="task-duration" class="form-control" value="50" min="10" step="5">
+              </div>
+              <div class="form-group">
+                <label for="task-date">排定完成日期</label>
+                <input type="date" id="task-date" class="form-control">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="task-notes">目標與頁數標記 (選填)</label>
+              <textarea id="task-notes" class="form-control" rows="2" placeholder="例：完成講義 p.45~52、訂正錯題並標註到錯題本..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              排入讀書清單
+            </button>
+          </form>
+        </div>
+
+        <!-- 番茄鐘專注計時器 -->
+        <div class="card pomodoro-card">
+          <h2 class="card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            自習番茄鐘 (50m 衝刺 / 10m 休息)
+          </h2>
+          <div class="timer-task-label" id="timer-task-name">尚未選取專注科目</div>
+          <div class="timer-display" id="pomodoro-display">50:00</div>
+          <div class="timer-controls">
+            <button class="btn btn-primary" style="width: auto; padding: 7px 18px;" id="btn-timer-toggle">開始讀書</button>
+            <button class="btn btn-secondary" id="btn-timer-50">50 分鐘 (學測時長)</button>
+            <button class="btn btn-secondary" id="btn-timer-10">10 分鐘 (下課休息)</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 右欄：艾森豪威爾四象限排程 -->
+      <main>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+          <h2 style="font-size: 1.15rem; font-weight: 800;">
+            高中讀書優先級四象限 (Eisenhower Matrix)
+          </h2>
+          <div style="display: flex; gap: 8px;">
+            <select id="filter-task-subject" class="form-select" style="width: auto; padding: 5px 10px; font-size: 0.82rem;">
+              <option value="all">所有學科</option>
+              <option value="math">數學</option>
+              <option value="english">英文</option>
+              <option value="chinese">國文</option>
+              <option value="science">自然</option>
+              <option value="social">社會</option>
+              <option value="exam">模考訂正</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="matrix-grid">
+          <!-- P1 -->
+          <div class="matrix-cell">
+            <div class="matrix-header p1">
+              <div class="matrix-title" style="color: var(--p1-text);">
+                <span>🔥 第一象限：緊急且重要 (段考/即期大考)</span>
+              </div>
+              <span class="badge-count" id="count-p1">0</span>
+            </div>
+            <div class="task-list" id="list-p1"></div>
+          </div>
+
+          <!-- P2 -->
+          <div class="matrix-cell">
+            <div class="matrix-header p2">
+              <div class="matrix-title" style="color: var(--p2-text);">
+                <span>⭐ 第二象限：重要不緊急 (學測核心底子)</span>
+              </div>
+              <span class="badge-count" id="count-p2">0</span>
+            </div>
+            <div class="task-list" id="list-p2"></div>
+          </div>
+
+          <!-- P3 -->
+          <div class="matrix-cell">
+            <div class="matrix-header p3">
+              <div class="matrix-title" style="color: var(--p3-text);">
+                <span>⚡ 第三象限：緊急不重要 (隨堂作業/交差事項)</span>
+              </div>
+              <span class="badge-count" id="count-p3">0</span>
+            </div>
+            <div class="task-list" id="list-p3"></div>
+          </div>
+
+          <!-- P4 -->
+          <div class="matrix-cell">
+            <div class="matrix-header p4">
+              <div class="matrix-title" style="color: var(--p4-text);">
+                <span>🌱 第四象限：不急不重 (課外拓展/輕鬆看)</span>
+              </div>
+              <span class="badge-count" id="count-p4">0</span>
+            </div>
+            <div class="task-list" id="list-p4"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+
+</div>
+
+<!-- 彈出視窗：編輯課表時段 -->
+<div class="modal-overlay" id="cell-modal">
+  <div class="modal-card">
+    <h3 class="modal-title">
+      <span>✏️</span> 安排此時段讀書內容
+    </h3>
+    <p class="modal-subtitle" id="modal-cell-subtitle">週一 晚自習時段 (19:00 - 20:30)</p>
+
+    <form id="cell-edit-form">
+      <div class="form-group">
+        <label for="cell-subject">研讀學科 *</label>
+        <select id="cell-subject" class="form-select">
+          <option value="math">📐 數學 (數A / 數B)</option>
+          <option value="english">🔤 英文 (單字/雜誌/克漏字)</option>
+          <option value="chinese">🏮 國文 (古文30篇/文言文/作文)</option>
+          <option value="science">🔬 自然科 (物理/化學/生物/地科)</option>
+          <option value="social">🌍 社會科 (歷史/地理/公民)</option>
+          <option value="exam">📝 歷屆模考計時 & 錯題訂正</option>
+          <option value="self">💡 自主學習 / 筆記整理</option>
+          <option value="cram">🏫 學校第八節 / 外面補習</option>
+          <option value="rest">☕ 休息放鬆 / 運動洗澡</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="cell-title">規劃章節與目標 *</label>
+        <input type="text" id="cell-title" class="form-control" placeholder="例：三角函數例題 10 題、背 50 個 7000 單" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cell-duration">時長 (分鐘)</label>
+          <input type="number" id="cell-duration" class="form-control" value="90" min="15" step="5">
+        </div>
+        <div class="form-group">
+          <label for="cell-status">目前狀態</label>
+          <select id="cell-status" class="form-select">
+            <option value="planned">📅 預定讀書</option>
+            <option value="done">✅ 已完成</option>
+            <option value="cram">🏫 補習/學校輔導</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btn-cell-clear" style="color: var(--danger); margin-right: auto;">清空此格</button>
+        <button type="button" class="btn btn-secondary" id="btn-cell-cancel">取消</button>
+        <button type="submit" class="btn btn-primary" style="width: auto;">儲存規劃</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 彈出視窗：修改目標考試日期 -->
+<div class="modal-overlay" id="exam-modal">
+  <div class="modal-card">
+    <h3 class="modal-title">🎯 設定目標考試與日期</h3>
+    <p class="modal-subtitle">設定你接下來要全力衝刺的考試目標，首頁會即時倒數！</p>
+    <div class="form-group">
+      <label for="modal-exam-name">考試名稱</label>
+      <input type="text" id="modal-exam-name" class="form-control" value="下次重大段考 (第三次段考)">
+    </div>
+    <div class="form-group">
+      <label for="modal-exam-date">考試日期</label>
+      <input type="date" id="modal-exam-date" class="form-control">
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" id="btn-exam-cancel">取消</button>
+      <button type="button" class="btn btn-primary" style="width: auto;" id="btn-exam-save">確認更新</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 高中學科名稱與配色對照表
+  const SUBJECT_MAP = {
+    math: { name: '數學', bgClass: 'bg-math', badge: '數A/數B', color: '#6366f1', type: 'stem' },
+    english: { name: '英文', bgClass: 'bg-english', badge: '英語', color: '#0284c7', type: 'lang' },
+    chinese: { name: '國文', bgClass: 'bg-chinese', badge: '國文', color: '#ea580c', type: 'lang' },
+    science: { name: '自然', bgClass: 'bg-science', badge: '物化生', color: '#059669', type: 'stem' },
+    social: { name: '社會', bgClass: 'bg-social', badge: '歷地公', color: '#d97706', type: 'social' },
+    exam: { name: '模考訂正', bgClass: 'bg-exam', badge: '模考', color: '#8b5cf6', type: 'exam' },
+    self: { name: '自主學習', bgClass: 'bg-self', badge: '自主', color: '#db2777', type: 'other' },
+    cram: { name: '補習輔導', bgClass: 'bg-cram', badge: '外補', color: '#64748b', type: 'other' },
+    rest: { name: '休息放鬆', bgClass: 'bg-cram', badge: '休息', color: '#94a3b8', type: 'other' }
+  };
+
+  // 專門為高中生量身規劃的「每日自習時段表」
+  const TIME_SLOTS = [
+    { id: 'morning', name: '晨讀 / 早自習', time: '07:30 - 08:15', defaultMin: 45 },
+    { id: 'evening', name: '放學傍晚黃金段', time: '17:30 - 18:30', defaultMin: 60 },
+    { id: 'night1', name: '晚自習 (第一節)', time: '19:00 - 20:30', defaultMin: 90 },
+    { id: 'night2', name: '晚自習 (第二節)', time: '20:45 - 22:15', defaultMin: 90 },
+    { id: 'bedtime', name: '睡前記憶衝刺', time: '22:30 - 23:15', defaultMin: 45 },
+    { id: 'weekend_m', name: '週末上午 (六日專用)', time: '09:00 - 12:00', defaultMin: 180, weekendOnly: true },
+    { id: 'weekend_a', name: '週末下午 (六日專用)', time: '13:30 - 17:00', defaultMin: 210, weekendOnly: true }
+  ];
+
+  const DAYS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+  const DAY_LABELS = {
+    mon: '週一', tue: '週二', wed: '週三', thu: '週四', fri: '週五', sat: '週六', sun: '週日'
+  };
+
+  // 預設高中生每週課表範本
+  const DEFAULT_SCHEDULE = {
+    'mon-evening': { subject: 'english', title: '背 7000 單 30 個 + 空英閱讀 1 篇', duration: 60, status: 'planned' },
+    'mon-night1': { subject: 'math', title: '數A 多項式函數習題 8 題', duration: 90, status: 'planned' },
+    'mon-night2': { subject: 'science', title: '物理直線運動講義與例題', duration: 90, status: 'planned' },
+    'tue-night1': { subject: 'chinese', title: '古文 30 篇：燭之武退秦師精讀', duration: 90, status: 'planned' },
+    'tue-night2': { subject: 'social', title: '歷史台灣史第一單元重點筆記', duration: 90, status: 'planned' },
+    'wed-night1': { subject: 'math', title: '數學第三冊幾何歷屆題', duration: 90, status: 'planned' },
+    'wed-night2': { subject: 'english', title: '高中克漏字特訓 3 篇', duration: 90, status: 'planned' },
+    'thu-night1': { subject: 'science', title: '化學計量與莫耳濃度觀念整理', duration: 90, status: 'planned' },
+    'thu-night2': { subject: 'exam', title: '自然科隨堂小考錯題訂正本', duration: 90, status: 'planned' },
+    'fri-evening': { subject: 'self', title: '自主學習計畫與學習歷程檔案整理', duration: 60, status: 'planned' },
+    'fri-night1': { subject: 'cram', title: '補習班數學衝刺班', duration: 90, status: 'cram' },
+    'sat-weekend_m': { subject: 'exam', title: '模擬測驗：學測英文歷屆全份計時', duration: 180, status: 'planned' },
+    'sat-weekend_a': { subject: 'math', title: '數A 弱點大掃除：排列組合專題', duration: 210, status: 'planned' },
+    'sun-weekend_m': { subject: 'science', title: '自然科跨科探究模考練習', duration: 180, status: 'planned' },
+    'sun-weekend_a': { subject: 'exam', title: '週總結：整週錯題本重練與下週進度規劃', duration: 180, status: 'planned' }
+  };
+
+  // 預設高中四象限讀書任務
+  const DEFAULT_TASKS = [
+    {
+      id: 'task-1',
+      title: '數A 排列組合與古典機率題庫 15 題',
+      subject: 'math',
+      priority: 'p1',
+      duration: 80,
+      date: formatLocalDate(new Date()),
+      notes: '段考必考重點，務必弄懂排容原理與條件機率',
+      completed: false
+    },
+    {
+      id: 'task-2',
+      title: '英文學測高頻 7000 單字 Unit 18~20 熟背',
+      subject: 'english',
+      priority: 'p2',
+      duration: 45,
+      date: formatLocalDate(new Date()),
+      notes: '搭配詞與例句朗讀，放入 Anki 複習庫',
+      completed: false
+    },
+    {
+      id: 'task-3',
+      title: '古文核心 30 篇：赤壁賦文言詞意與修辭解析',
+      subject: 'chinese',
+      priority: 'p2',
+      duration: 60,
+      date: formatLocalDate(new Date()),
+      notes: '常考主旨與名句默寫記憶',
+      completed: false
+    },
+    {
+      id: 'task-4',
+      title: '化學沉澱表與酸鹼滴定實驗報告書寫',
+      subject: 'science',
+      priority: 'p3',
+      duration: 35,
+      date: formatLocalDate(new Date()),
+      notes: '週五前需繳交給自然科任老師',
+      completed: true
+    }
+  ];
+
+  // 全域變數狀態
+  let scheduleData = {};
+  let taskList = [];
+  let examTarget = {
+    name: '下次重大段考 (第三次段考)',
+    date: getFutureDate(14)
+  };
+
+  let editingCellKey = null;
+
+  // 番茄鐘計時變數
+  let timerInterval = null;
+  let timerSeconds = 50 * 60;
+  let isTimerRunning = false;
+
+  function formatLocalDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  function getFutureDate(days) {
+    const d = new Date();
+    d.setDate(d.getDate() + days);
+    return formatLocalDate(d);
+  }
+
+  // 初始化
+  function init() {
+    loadStorage();
+    setupEventListeners();
+    renderAll();
+    initTimerDisplay();
+  }
+
+  function loadStorage() {
+    const sSched = localStorage.getItem('hs_study_schedule');
+    scheduleData = sSched ? JSON.parse(sSched) : DEFAULT_SCHEDULE;
+
+    const sTasks = localStorage.getItem('hs_study_tasks');
+    taskList = sTasks ? JSON.parse(sTasks) : DEFAULT_TASKS;
+
+    const sExam = localStorage.getItem('hs_exam_target');
+    if (sExam) {
+      examTarget = JSON.parse(sExam);
+    } else {
+      examTarget = { name: '第三次段考', date: getFutureDate(14) };
+    }
+
+    document.getElementById('task-date').value = formatLocalDate(new Date());
+  }
+
+  function saveStorage() {
+    localStorage.setItem('hs_study_schedule', JSON.stringify(scheduleData));
+    localStorage.setItem('hs_study_tasks', JSON.stringify(taskList));
+    localStorage.setItem('hs_exam_target', JSON.stringify(examTarget));
+  }
+
+  function setupEventListeners() {
+    // 導航切換
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+
+        this.classList.add('active');
+        const tabId = this.dataset.tab;
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // 課表點擊委託
+    document.getElementById('schedule-body').addEventListener('click', function(e) {
+      const cell = e.target.closest('.schedule-cell');
+      if (cell) {
+        const slotId = cell.dataset.slot;
+        const day = cell.dataset.day;
+        openCellModal(day, slotId);
+      }
+    });
+
+    // 彈出視窗表單事件
+    document.getElementById('cell-edit-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!editingCellKey) return;
+
+      const subject = document.getElementById('cell-subject').value;
+      const title = document.getElementById('cell-title').value.trim();
+      const duration = parseInt(document.getElementById('cell-duration').value) || 60;
+      const status = document.getElementById('cell-status').value;
+
+      scheduleData[editingCellKey] = { subject, title, duration, status };
+      saveStorage();
+      closeCellModal();
+      renderScheduleTable();
+      updateSummaries();
+    });
+
+    document.getElementById('btn-cell-clear').addEventListener('click', function() {
+      if (editingCellKey && scheduleData[editingCellKey]) {
+        delete scheduleData[editingCellKey];
+        saveStorage();
+        closeCellModal();
+        renderScheduleTable();
+        updateSummaries();
+      }
+    });
+
+    document.getElementById('btn-cell-cancel').addEventListener('click', closeCellModal);
+
+    // 重置課表
+    document.getElementById('btn-reset-schedule').addEventListener('click', function() {
+      if (confirm('確定要將課表重置為標準高中生示範範本嗎？')) {
+        scheduleData = JSON.parse(JSON.stringify(DEFAULT_SCHEDULE));
+        saveStorage();
+        renderScheduleTable();
+        updateSummaries();
+      }
+    });
+
+    // 列印課表
+    document.getElementById('btn-export-schedule').addEventListener('click', function() {
+      window.print();
+    });
+
+    // 倒數計時點擊修改
+    document.getElementById('countdown-btn').addEventListener('click', function() {
+      document.getElementById('modal-exam-name').value = examTarget.name;
+      document.getElementById('modal-exam-date').value = examTarget.date;
+      document.getElementById('exam-modal').classList.add('active');
+    });
+
+    document.getElementById('btn-exam-cancel').addEventListener('click', function() {
+      document.getElementById('exam-modal').classList.remove('active');
+    });
+
+    document.getElementById('btn-exam-save').addEventListener('click', function() {
+      const name = document.getElementById('modal-exam-name').value.trim();
+      const date = document.getElementById('modal-exam-date').value;
+      if (name && date) {
+        examTarget = { name, date };
+        saveStorage();
+        updateExamCountdown();
+        document.getElementById('exam-modal').classList.remove('active');
+      }
+    });
+
+    // 新增任務表單
+    document.getElementById('task-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const title = document.getElementById('task-title').value.trim();
+      const subject = document.getElementById('task-subject').value;
+      const priority = document.getElementById('task-priority').value;
+      const duration = parseInt(document.getElementById('task-duration').value) || 45;
+      const date = document.getElementById('task-date').value;
+      const notes = document.getElementById('task-notes').value.trim();
+
+      if (!title) return;
+
+      const newTask = {
+        id: 'task_' + Date.now(),
+        title,
+        subject,
+        priority,
+        duration,
+        date,
+        notes,
+        completed: false
+      };
+
+      taskList.unshift(newTask);
+      saveStorage();
+      renderTasks();
+      updateSummaries();
+
+      document.getElementById('task-title').value = '';
+      document.getElementById('task-notes').value = '';
+    });
+
+    // 學科任務篩選
+    document.getElementById('filter-task-subject').addEventListener('change', renderTasks);
+
+    // 番茄鐘按鈕事件
+    document.getElementById('btn-timer-toggle').addEventListener('click', toggleTimer);
+    document.getElementById('btn-timer-50').addEventListener('click', () => setTimer(50 * 60));
+    document.getElementById('btn-timer-10').addEventListener('click', () => setTimer(10 * 60));
+  }
+
+  // 渲染每週表格
+  function renderScheduleTable() {
+    const tbody = document.getElementById('schedule-body');
+    tbody.innerHTML = '';
+
+    TIME_SLOTS.forEach(slot => {
+      const tr = document.createElement('tr');
+
+      // 時段標籤列
+      const th = document.createElement('td');
+      th.className = 'time-slot-label';
+      th.innerHTML = `<div>${slot.name}</div><span class="time-slot-sub">${slot.time}</span>`;
+      tr.appendChild(th);
+
+      // 各星期天
+      DAYS.forEach(day => {
+        const td = document.createElement('td');
+        td.className = 'schedule-cell';
+        td.dataset.slot = slot.id;
+        td.dataset.day = day;
+
+        const isWeekend = (day === 'sat' || day === 'sun');
+
+        // 如果該時段是六日專用，平日顯示不可用
+        if (slot.weekendOnly && !isWeekend) {
+          td.style.background = '#f1f5f9';
+          td.style.cursor = 'not-allowed';
+          td.innerHTML = `<div class="cell-empty" style="color: #cbd5e1;">平日學校作息</div>`;
+          tr.appendChild(td);
+          return;
+        }
+
+        const cellKey = `${day}-${slot.id}`;
+        const item = scheduleData[cellKey];
+
+        if (item) {
+          const sMeta = SUBJECT_MAP[item.subject] || SUBJECT_MAP.math;
+          td.innerHTML = `
+            <div class="cell-item ${sMeta.bgClass}">
+              <div class="cell-item-header">
+                <span class="cell-badge">${sMeta.name}</span>
+                <span style="font-size: 0.68rem; opacity: 0.9;">${item.status === 'done' ? '✅' : '⏳'}</span>
+              </div>
+              <div class="cell-content">${escapeHTML(item.title)}</div>
+              <div class="cell-duration">⏱️ ${item.duration} 分鐘</div>
+            </div>
+          `;
+        } else {
+          td.innerHTML = `
+            <div class="cell-empty">
+              <span>+ 填入規劃</span>
+            </div>
+          `;
+        }
+
+        tr.appendChild(td);
+      });
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  // 彈出時段編輯視窗
+  function openCellModal(day, slotId) {
+    const slot = TIME_SLOTS.find(s => s.id === slotId);
+    const isWeekend = (day === 'sat' || day === 'sun');
+    if (slot.weekendOnly && !isWeekend) return;
+
+    editingCellKey = `${day}-${slotId}`;
+    const dayLabel = DAY_LABELS[day];
+    document.getElementById('modal-cell-subtitle').textContent = `${dayLabel}【${slot.name}】(${slot.time})`;
+
+    const existing = scheduleData[editingCellKey];
+    if (existing) {
+      document.getElementById('cell-subject').value = existing.subject;
+      document.getElementById('cell-title').value = existing.title;
+      document.getElementById('cell-duration').value = existing.duration;
+      document.getElementById('cell-status').value = existing.status || 'planned';
+      document.getElementById('btn-cell-clear').style.display = 'inline-block';
+    } else {
+      document.getElementById('cell-subject').value = 'math';
+      document.getElementById('cell-title').value = '';
+      document.getElementById('cell-duration').value = slot.defaultMin;
+      document.getElementById('cell-status').value = 'planned';
+      document.getElementById('btn-cell-clear').style.display = 'none';
+    }
+
+    document.getElementById('cell-modal').classList.add('active');
+  }
+
+  function closeCellModal() {
+    document.getElementById('cell-modal').classList.remove('active');
+    editingCellKey = null;
+  }
+
+  // 渲染任務與四象限
+  function renderTasks() {
+    const filterSub = document.getElementById('filter-task-subject').value;
+
+    const filtered = taskList.filter(t => {
+      return (filterSub === 'all' || t.subject === filterSub);
+    });
+
+    const groups = { p1: [], p2: [], p3: [], p4: [] };
+    filtered.forEach(t => {
+      if (groups[t.priority]) groups[t.priority].push(t);
+      else groups.p2.push(t);
+    });
+
+    ['p1', 'p2', 'p3', 'p4'].forEach(pKey => {
+      const listEl = document.getElementById(`list-${pKey}`);
+      const countEl = document.getElementById(`count-${pKey}`);
+      countEl.textContent = groups[pKey].length;
+
+      if (groups[pKey].length === 0) {
+        listEl.innerHTML = `<div class="empty-state">尚無此優先度任務</div>`;
+      } else {
+        listEl.innerHTML = groups[pKey].map(t => {
+          const sMeta = SUBJECT_MAP[t.subject] || SUBJECT_MAP.math;
+          return `
+            <div class="task-card ${t.completed ? 'completed' : ''}" id="${t.id}">
+              <input type="checkbox" class="task-checkbox" ${t.completed ? 'checked' : ''} onchange="toggleTaskDone('${t.id}')">
+              <div class="task-content">
+                <div class="task-header">
+                  <span class="subject-pill" style="background: ${sMeta.color}; font-size: 0.68rem; padding: 1px 6px;">${sMeta.name}</span>
+                  <span class="task-text">${escapeHTML(t.title)}</span>
+                </div>
+                ${t.notes ? `<div class="task-notes">${escapeHTML(t.notes)}</div>` : ''}
+                <div class="task-tags">
+                  <span class="tag tag-time">⏱️ ${t.duration} 分鐘</span>
+                  ${t.date ? `<span class="tag tag-time">📅 ${t.date}</span>` : ''}
+                </div>
+              </div>
+              <div style="display:flex; gap: 4px;">
+                <button class="action-icon-btn" title="放入自習番茄鐘" onclick="focusTaskOnTimer('${t.id}')">▶</button>
+                <button class="action-icon-btn delete" title="刪除" onclick="deleteTaskItem('${t.id}')">✕</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    });
+  }
+
+  window.toggleTaskDone = function(id) {
+    const t = taskList.find(x => x.id === id);
+    if (t) {
+      t.completed = !t.completed;
+      saveStorage();
+      renderTasks();
+      updateSummaries();
+    }
+  };
+
+  window.deleteTaskItem = function(id) {
+    if (confirm('確定刪除這筆高中讀書任務嗎？')) {
+      taskList = taskList.filter(x => x.id !== id);
+      saveStorage();
+      renderTasks();
+      updateSummaries();
+    }
+  };
+
+  window.focusTaskOnTimer = function(id) {
+    const t = taskList.find(x => x.id === id);
+    if (t) {
+      const sMeta = SUBJECT_MAP[t.subject] || SUBJECT_MAP.math;
+      document.getElementById('timer-task-name').textContent = `🎯 正在衝刺：[${sMeta.name}] ${t.title}`;
+      setTimer(Math.min(t.duration, 90) * 60);
+    }
+  };
+
+  // 番茄鐘功能
+  function setTimer(seconds) {
+    clearInterval(timerInterval);
+    isTimerRunning = false;
+    timerSeconds = seconds;
+    const btn = document.getElementById('btn-timer-toggle');
+    btn.textContent = '開始讀書';
+    btn.style.background = 'var(--primary)';
+    updateTimerText();
+  }
+
+  function toggleTimer() {
+    const btn = document.getElementById('btn-timer-toggle');
+    if (isTimerRunning) {
+      clearInterval(timerInterval);
+      isTimerRunning = false;
+      btn.textContent = '繼續專注';
+      btn.style.background = 'var(--primary)';
+    } else {
+      isTimerRunning = true;
+      btn.textContent = '暫停自習';
+      btn.style.background = 'var(--warning)';
+      timerInterval = setInterval(() => {
+        if (timerSeconds > 0) {
+          timerSeconds--;
+          updateTimerText();
+        } else {
+          clearInterval(timerInterval);
+          isTimerRunning = false;
+          btn.textContent = '開始讀書';
+          btn.style.background = 'var(--primary)';
+          alert('🔔 自習時段結束！休息一下眼睛，喝口水再繼續出發！');
+          setTimer(10 * 60);
+        }
+      }, 1000);
+    }
+  }
+
+  function updateTimerText() {
+    const m = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+    const s = (timerSeconds % 60).toString().padStart(2, '0');
+    document.getElementById('pomodoro-display').textContent = `${m}:${s}`;
+  }
+
+  function initTimerDisplay() {
+    updateTimerText();
+  }
+
+  // 頂部考試倒數更新
+  function updateExamCountdown() {
+    document.getElementById('exam-target-name').textContent = `🎯 ${examTarget.name}`;
+    document.getElementById('exam-target-date').textContent = examTarget.date;
+
+    const [year, month, day] = examTarget.date.split('-').map(Number);
+    const targetTime = new Date(year, month - 1, day).getTime();
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const diffDays = Math.round((targetTime - today.getTime()) / (1000 * 60 * 60 * 24));
+
+    document.getElementById('exam-countdown-days').textContent = diffDays > 0 ? diffDays : 0;
+  }
+
+  // 統計數據計算
+  function updateSummaries() {
+    // 每週表格時數累計
+    let totalMin = 0;
+    let stemMin = 0;
+    let langMin = 0;
+    let examMin = 0;
+
+    Object.values(scheduleData).forEach(item => {
+      const dur = parseInt(item.duration) || 0;
+      totalMin += dur;
+
+      const subMeta = SUBJECT_MAP[item.subject];
+      if (subMeta) {
+        if (subMeta.type === 'stem') stemMin += dur;
+        if (subMeta.type === 'lang') langMin += dur;
+        if (subMeta.type === 'exam') examMin += dur;
+      }
+    });
+
+    const totalHours = (totalMin / 60).toFixed(1);
+    document.getElementById('sum-total-hours').textContent = `${totalHours} 小時`;
+    document.getElementById('sum-stem-hours').textContent = `${(stemMin / 60).toFixed(1)} 小時`;
+    document.getElementById('sum-lang-hours').textContent = `${(langMin / 60).toFixed(1)} 小時`;
+    document.getElementById('sum-exam-hours').textContent = `${(examMin / 60).toFixed(1)} 小時`;
+
+    document.getElementById('stat-weekly-hours').textContent = `${totalHours} / 25 小時`;
+
+    // 今日時數
+    const today = formatLocalDate(new Date());
+    const todayTasks = taskList.filter(t => t.date === today);
+    const todayMinutes = todayTasks.reduce((acc, t) => acc + (parseInt(t.duration) || 0), 0);
+    document.getElementById('stat-today-time').textContent = `${todayMinutes} 分鐘`;
+  }
+
+  function escapeHTML(str) {
+    if (!str) return '';
+    return str.replace(/[&<>'"]/g, tag => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    }[tag] || tag));
+  }
+
+  function renderAll() {
+    updateExamCountdown();
+    renderScheduleTable();
+    renderTasks();
+    updateSummaries();
+  }
+
+  window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
+
