@@ -868,9 +868,245 @@
       color: #fff;
       display: inline-block;
     }
+
+    /* ===================================================
+       耶誕節主題風格樣式 (CHRISTMAS HOLIDAY THEME)
+       =================================================== */
+    body {
+      background:
+        radial-gradient(circle at 12% 15%, rgba(185, 28, 28, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 88% 18%, rgba(22, 101, 52, 0.09) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(217, 119, 6, 0.06) 0%, transparent 55%),
+        linear-gradient(180deg, #edf4fb 0%, #e6eff8 35%, #edf7f2 70%, #fbf3f2 100%) !important;
+      background-attachment: fixed !important;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* 頂部彩色聖誕燈串 */
+    .christmas-lights-wrap {
+      position: fixed;
+      top: -10px;
+      left: 0;
+      width: 100%;
+      height: 42px;
+      pointer-events: none;
+      z-index: 1000;
+      overflow: hidden;
+      display: flex;
+      justify-content: space-around;
+      padding: 0 10px;
+    }
+
+    .xmas-bulb {
+      position: relative;
+      width: 12px;
+      height: 20px;
+      border-radius: 50% 50% 45% 45%;
+      margin: 0 6px;
+      top: 14px;
+    }
+
+    .xmas-bulb::before {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: 2px;
+      width: 8px;
+      height: 5px;
+      background: #334155;
+      border-radius: 2px;
+    }
+
+    .xmas-bulb::after {
+      content: "";
+      position: absolute;
+      top: -14px;
+      left: -22px;
+      width: 56px;
+      height: 16px;
+      border-bottom: 2px solid rgba(71, 85, 105, 0.45);
+      border-radius: 50%;
+    }
+
+    .bulb-red {
+      background: #ef4444;
+      box-shadow: 0 2px 14px 2px rgba(239, 68, 68, 0.85);
+      animation: bulbTwinkle 1.6s infinite alternate ease-in-out;
+    }
+    .bulb-green {
+      background: #10b981;
+      box-shadow: 0 2px 14px 2px rgba(16, 185, 129, 0.85);
+      animation: bulbTwinkle 1.9s infinite alternate ease-in-out 0.4s;
+    }
+    .bulb-gold {
+      background: #f59e0b;
+      box-shadow: 0 2px 14px 2px rgba(245, 158, 11, 0.85);
+      animation: bulbTwinkle 1.7s infinite alternate ease-in-out 0.8s;
+    }
+    .bulb-blue {
+      background: #38bdf8;
+      box-shadow: 0 2px 14px 2px rgba(56, 189, 248, 0.85);
+      animation: bulbTwinkle 2.1s infinite alternate ease-in-out 1.2s;
+    }
+
+    @keyframes bulbTwinkle {
+      0% { opacity: 0.45; filter: brightness(0.85); transform: scale(0.95); }
+      100% { opacity: 1; filter: brightness(1.25); transform: scale(1.05); }
+    }
+
+    /* 背景飄雪 Canvas */
+    #snow-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 99;
+      transition: opacity 0.4s ease;
+    }
+
+    /* 背景耶誕剪影裝飾貼紙 (不干擾操作) */
+    .christmas-bg-stickers {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .xmas-sticker {
+      position: absolute;
+      opacity: 0.2;
+      user-select: none;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.06));
+      animation: floatGentle 6s ease-in-out infinite alternate;
+    }
+
+    .sticker-tl { top: 70px; left: 16px; font-size: 2.8rem; }
+    .sticker-tr { top: 90px; right: 20px; font-size: 3.2rem; animation-delay: 1.5s; }
+    .sticker-bl { bottom: 60px; left: 24px; font-size: 3.5rem; animation-delay: 3s; }
+    .sticker-br { bottom: 80px; right: 28px; font-size: 3rem; animation-delay: 2s; }
+    .sticker-mid-l { top: 45%; left: 8px; font-size: 2.4rem; animation-delay: 0.8s; }
+    .sticker-mid-r { top: 55%; right: 12px; font-size: 2.6rem; animation-delay: 2.5s; }
+
+    @keyframes floatGentle {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-12px) rotate(4deg); }
+    }
+
+    /* 頂部激勵橫幅耶誕風格化 */
+    .hero-banner {
+      background: linear-gradient(135deg, #165b33 0%, #1e3a2f 35%, #831843 70%, #991b1b 100%) !important;
+      border: 1px solid rgba(254, 240, 138, 0.35) !important;
+      box-shadow: 0 12px 30px -8px rgba(153, 27, 27, 0.4) !important;
+      position: relative;
+    }
+
+    .hero-banner::before {
+      content: "❄️";
+      position: absolute;
+      top: -10px;
+      right: 25px;
+      font-size: 4rem;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .christmas-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: linear-gradient(135deg, #ef4444, #b91c1c);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid #fecaca;
+      box-shadow: 0 2px 8px rgba(185, 28, 28, 0.3);
+      vertical-align: middle;
+      letter-spacing: 0.5px;
+      margin-left: 8px;
+    }
+
+    /* 耶誕飄雪開關鈕 */
+    .snow-toggle-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 10000;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.12);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #1e293b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .snow-toggle-btn:hover {
+      background: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(15, 23, 42, 0.18);
+      border-color: #94a3b8;
+    }
   </style>
 </head>
 <body>
+
+  <!-- 頂部聖誕彩燈燈串 (固定頂部) -->
+  <div class="christmas-lights-wrap" aria-hidden="true">
+    <div class="xmas-bulb bulb-red"></div>
+    <div class="xmas-bulb bulb-green"></div>
+    <div class="xmas-bulb bulb-gold"></div>
+    <div class="xmas-bulb bulb-blue"></div>
+    <div class="xmas-bulb bulb-red"></div>
+    <div class="xmas-bulb bulb-green"></div>
+    <div class="xmas-bulb bulb-gold"></div>
+    <div class="xmas-bulb bulb-blue"></div>
+    <div class="xmas-bulb bulb-red"></div>
+    <div class="xmas-bulb bulb-green"></div>
+    <div class="xmas-bulb bulb-gold"></div>
+    <div class="xmas-bulb bulb-blue"></div>
+    <div class="xmas-bulb bulb-red"></div>
+    <div class="xmas-bulb bulb-green"></div>
+    <div class="xmas-bulb bulb-gold"></div>
+    <div class="xmas-bulb bulb-blue"></div>
+    <div class="xmas-bulb bulb-red"></div>
+    <div class="xmas-bulb bulb-green"></div>
+    <div class="xmas-bulb bulb-gold"></div>
+    <div class="xmas-bulb bulb-blue"></div>
+  </div>
+
+  <!-- 背景動態飄雪 Canvas -->
+  <canvas id="snow-canvas" aria-hidden="true"></canvas>
+
+  <!-- 背景耶誕剪影裝飾貼紙 (不干擾點擊操作) -->
+  <div class="christmas-bg-stickers" aria-hidden="true">
+    <div class="xmas-sticker sticker-tl" title="Merry Christmas">🎄</div>
+    <div class="xmas-sticker sticker-tr" title="Winter Snowman">⛄</div>
+    <div class="xmas-sticker sticker-mid-l" title="Holiday Bells">🔔</div>
+    <div class="xmas-sticker sticker-mid-r" title="Gift Box">🎁</div>
+    <div class="xmas-sticker sticker-bl" title="Gingerbread">🍪</div>
+    <div class="xmas-sticker sticker-br" title="Christmas Sock">🧦</div>
+  </div>
+
+  <!-- 飄雪開關鈕 -->
+  <button id="snow-toggle" class="snow-toggle-btn" title="切換飄雪動畫">
+    <span>❄️</span>
+    <span id="snow-toggle-text">飄雪：開</span>
+  </button>
 
 <div class="container">
 
@@ -878,12 +1114,13 @@
   <div class="hero-banner">
     <div class="hero-content">
       <h1>
-        <span>🎓</span>
+        <span>🎄</span>
         高中生高效讀書計畫與每週排程系統
+        <span class="christmas-badge">🎅 聖誕暖心衝刺版 ❄️</span>
       </h1>
       <p>平衡「段考死線」與「學測核心長遠底子」，聰明規劃每一堂自習與放學黃金時段</p>
       <div class="hero-quote" id="daily-quote">
-        💡 今日座右銘：「不積跬步，無以至千里。把每一次自習當成段考前最後一戰！」
+        🎁 聖誕特輯：「每一個專注奮鬥的冬日夜晚，都是未來閃閃發光的禮物 ❄️」
       </div>
     </div>
 
@@ -1802,6 +2039,95 @@
   }
 
   window.addEventListener('DOMContentLoaded', init);
+
+  /* ===================================================
+     聖誕飄雪動態特效與開關控制 (CHRISTMAS SNOW SCRIPT)
+     =================================================== */
+  (function initChristmasSnow() {
+    const canvas = document.getElementById('snow-canvas');
+    const toggleBtn = document.getElementById('snow-toggle');
+    const toggleText = document.getElementById('snow-toggle-text');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    let isSnowing = localStorage.getItem('study_snow_enabled') !== 'false';
+    let animationId = null;
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+
+    const flakes = [];
+    const FLAKE_COUNT = Math.min(85, Math.floor(window.innerWidth / 16));
+
+    for (let i = 0; i < FLAKE_COUNT; i++) {
+      flakes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 2.8 + 1,
+        d: Math.random() * FLAKE_COUNT,
+        speed: Math.random() * 0.9 + 0.45,
+        drift: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.6 + 0.35
+      });
+    }
+
+    let angle = 0;
+    function renderSnow() {
+      if (!isSnowing) return;
+      ctx.clearRect(0, 0, width, height);
+      angle += 0.01;
+
+      for (let i = 0; i < flakes.length; i++) {
+        const f = flakes[i];
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255, 255, 255, ${f.opacity})`;
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
+        ctx.fill();
+
+        f.y += f.speed;
+        f.x += Math.sin(angle + f.d) * 0.65 + f.drift;
+
+        if (f.y > height + 6) {
+          f.y = -6;
+          f.x = Math.random() * width;
+        }
+        if (f.x > width + 6) f.x = -6;
+        if (f.x < -6) f.x = width + 6;
+      }
+      animationId = requestAnimationFrame(renderSnow);
+    }
+
+    function updateSnowState(enabled) {
+      isSnowing = enabled;
+      localStorage.setItem('study_snow_enabled', enabled ? 'true' : 'false');
+      if (enabled) {
+        canvas.style.display = 'block';
+        if (toggleText) toggleText.textContent = '飄雪：開';
+        if (!animationId) animationId = requestAnimationFrame(renderSnow);
+      } else {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+          animationId = null;
+        }
+        ctx.clearRect(0, 0, width, height);
+        canvas.style.display = 'none';
+        if (toggleText) toggleText.textContent = '飄雪：關';
+      }
+    }
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        updateSnowState(!isSnowing);
+      });
+    }
+
+    updateSnowState(isSnowing);
+  })();
 </script>
 </body>
 </html>
