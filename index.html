@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
@@ -1061,6 +1061,465 @@
       box-shadow: 0 6px 22px rgba(15, 23, 42, 0.18);
       border-color: #94a3b8;
     }
+
+    /* ===================================================
+       多款背景主題風格 (THEMES SYSTEM)
+       =================================================== */
+    body.theme-christmas {
+      background:
+        radial-gradient(circle at 12% 15%, rgba(185, 28, 28, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 88% 18%, rgba(22, 101, 52, 0.09) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(217, 119, 6, 0.06) 0%, transparent 55%),
+        linear-gradient(180deg, #edf4fb 0%, #e6eff8 35%, #edf7f2 70%, #fbf3f2 100%) !important;
+      background-attachment: fixed !important;
+    }
+
+    body.theme-galaxy {
+      background:
+        radial-gradient(ellipse at 50% 0%, #1e1b4b 0%, #0f172a 45%, #050811 100%) !important;
+      background-attachment: fixed !important;
+      color: #f1f5f9;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    body.theme-galaxy .hero-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%) !important;
+      border-color: rgba(99, 102, 241, 0.35) !important;
+      box-shadow: 0 12px 30px -8px rgba(15, 23, 42, 0.7) !important;
+    }
+    body.theme-galaxy .timetable-wrapper,
+    body.theme-galaxy .matrix-box,
+    body.theme-galaxy .pomodoro-card,
+    body.theme-galaxy .summary-card,
+    body.theme-galaxy .nav-tabs-wrapper,
+    body.theme-galaxy .modal-card,
+    body.theme-galaxy .review-stat-card,
+    body.theme-galaxy .review-panel,
+    body.theme-galaxy .week-navigator-bar,
+    body.theme-galaxy .week-history-card {
+      background: #1e293b !important;
+      border-color: #334155 !important;
+      color: #f8fafc !important;
+    }
+    body.theme-galaxy .schedule-table th,
+    body.theme-galaxy .schedule-table td {
+      border-color: #334155 !important;
+    }
+    body.theme-galaxy .schedule-table thead th {
+      background: #0f172a !important;
+      color: #cbd5e1 !important;
+    }
+    body.theme-galaxy .time-slot-label {
+      background: #1e293b !important;
+      color: #cbd5e1 !important;
+    }
+    body.theme-galaxy .cell-empty {
+      color: #64748b !important;
+    }
+    body.theme-galaxy .cell-empty:hover {
+      background: rgba(99, 102, 241, 0.15) !important;
+      color: #a5b4fc !important;
+    }
+    body.theme-galaxy .form-control,
+    body.theme-galaxy .form-select,
+    body.theme-galaxy .form-textarea,
+    body.theme-galaxy .week-journal-input {
+      background: #0f172a !important;
+      border-color: #475569 !important;
+      color: #f8fafc !important;
+    }
+    body.theme-galaxy .btn-secondary,
+    body.theme-galaxy .btn-week-nav,
+    body.theme-galaxy .btn-quick-week,
+    body.theme-galaxy .week-display-badge {
+      background: #334155 !important;
+      border-color: #475569 !important;
+      color: #f8fafc !important;
+    }
+    body.theme-galaxy .completed-task-item {
+      background: #0f172a !important;
+      border-color: #334155 !important;
+    }
+
+    body.theme-sakura {
+      background:
+        radial-gradient(circle at 18% 18%, rgba(251, 113, 133, 0.14) 0%, transparent 45%),
+        radial-gradient(circle at 82% 78%, rgba(244, 114, 182, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(253, 242, 248, 0.5) 0%, transparent 60%),
+        linear-gradient(180deg, #fff1f2 0%, #fdf2f8 35%, #fce7f3 70%, #f5f3ff 100%) !important;
+      background-attachment: fixed !important;
+      --primary: #e11d48;
+      --primary-light: #ffe4e6;
+    }
+    body.theme-sakura .hero-banner {
+      background: linear-gradient(135deg, #9f1239 0%, #e11d48 45%, #ec4899 85%, #f472b6 100%) !important;
+      border-color: rgba(254, 205, 211, 0.4) !important;
+      box-shadow: 0 12px 30px -8px rgba(225, 29, 72, 0.35) !important;
+    }
+
+    body.theme-forest {
+      background:
+        radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(5, 150, 105, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, #f0fdf4 0%, #ecfdf5 40%, #e6f4ea 75%, #f8fafc 100%) !important;
+      background-attachment: fixed !important;
+      --primary: #059669;
+      --primary-light: #d1fae5;
+    }
+    body.theme-forest .hero-banner {
+      background: linear-gradient(135deg, #064e3b 0%, #059669 45%, #10b981 85%, #34d399 100%) !important;
+      border-color: rgba(167, 243, 208, 0.4) !important;
+      box-shadow: 0 12px 30px -8px rgba(5, 150, 105, 0.35) !important;
+    }
+
+    body.theme-sunset {
+      background:
+        radial-gradient(circle at 20% 10%, rgba(245, 158, 11, 0.14) 0%, transparent 45%),
+        radial-gradient(circle at 80% 20%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, #fffbeb 0%, #fef3c7 35%, #fff1f2 70%, #faf5ff 100%) !important;
+      background-attachment: fixed !important;
+      --primary: #d97706;
+      --primary-light: #fef3c7;
+    }
+    body.theme-sunset .hero-banner {
+      background: linear-gradient(135deg, #7c2d12 0%, #c2410c 40%, #ea580c 75%, #f59e0b 100%) !important;
+      border-color: rgba(253, 230, 138, 0.4) !important;
+      box-shadow: 0 12px 30px -8px rgba(194, 65, 12, 0.35) !important;
+    }
+
+    body.theme-classic {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+        linear-gradient(180deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
+      background-attachment: fixed !important;
+      --primary: #4338ca;
+      --primary-light: #e0e7ff;
+    }
+    body.theme-classic .hero-banner {
+      background: linear-gradient(135deg, #312e81 0%, #4338ca 35%, #0284c7 75%, #06b6d4 100%) !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
+      box-shadow: 0 12px 30px -8px rgba(67, 56, 202, 0.45) !important;
+    }
+
+    /* 非聖誕主題隱藏彩燈、貼紙與聖誕標籤 */
+    body:not(.theme-christmas) .christmas-lights-wrap,
+    body:not(.theme-christmas) .christmas-bg-stickers,
+    body:not(.theme-christmas) .christmas-badge {
+      display: none !important;
+    }
+
+    /* 主題更換按鈕與彈出視窗 */
+    .btn-theme-trigger {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-theme-trigger:hover {
+      background: rgba(255, 255, 255, 0.38);
+      transform: translateY(-1px);
+    }
+
+    .theme-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .theme-card-option {
+      border: 2px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--card-bg);
+      text-align: left;
+    }
+    .theme-card-option:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    }
+    .theme-card-option.active {
+      border-color: var(--primary);
+      background: rgba(99, 102, 241, 0.05);
+      box-shadow: 0 0 0 2px var(--primary-light);
+    }
+    .theme-preview-bar {
+      height: 38px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .theme-card-title {
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+    .theme-card-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ===================================================
+       週次導航與未來規劃列 (WEEK NAVIGATOR)
+       =================================================== */
+    .week-navigator-bar {
+      background: #f8fafc;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .week-nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn-week-nav {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-main);
+      transition: all 0.15s;
+    }
+    .btn-week-nav:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .week-display-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-weight: 800;
+      font-size: 0.95rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .week-tag-indicator {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+    }
+    .week-tag-past {
+      background: #64748b;
+    }
+    .week-tag-future {
+      background: #0ea5e9;
+    }
+    .week-quick-jumps {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .btn-quick-week {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-quick-week:hover, .btn-quick-week.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .schedule-table th.col-today,
+    .schedule-table td.col-today {
+      background: rgba(99, 102, 241, 0.05);
+    }
+    .schedule-table th.col-today {
+      color: var(--primary);
+      font-weight: 900;
+    }
+    .today-pill {
+      display: inline-block;
+      font-size: 0.65rem;
+      background: var(--primary);
+      color: #fff;
+      padding: 1px 6px;
+      border-radius: 999px;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+
+    /* ===================================================
+       學習成果與歷史回顧分頁 (REVIEW & HISTORY TAB)
+       =================================================== */
+    .review-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .review-stat-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .stat-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .stat-main-num {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+    .stat-main-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .review-content-layout {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 1024px) {
+      .review-content-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .review-panel {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .review-panel-header {
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+    }
+    .review-panel-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .review-panel-header p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .week-history-card {
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 14px;
+      background: #fafafa;
+      transition: all 0.2s;
+    }
+    .week-history-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    }
+    .week-history-card.current {
+      border-left: 4px solid var(--primary);
+      background: #fff;
+    }
+    .week-history-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .week-history-title {
+      font-weight: 800;
+      font-size: 0.98rem;
+    }
+    .week-progress-bar-bg {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+    .week-progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1, #10b981);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+    .week-journal-input {
+      width: 100%;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      font-size: 0.82rem;
+      background: #fff;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 48px;
+      margin-top: 8px;
+    }
+    .completed-task-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid #e2e8f0;
+      margin-bottom: 8px;
+      background: #f8fafc;
+    }
   </style>
 </head>
 <body>
@@ -1141,6 +1600,11 @@
         <span>今日讀書時數</span>
         <strong id="stat-today-time">0 分鐘</strong>
       </div>
+
+      <!-- 更換背景風格按鈕 -->
+      <button class="btn-theme-trigger" id="btn-theme-open" title="點擊選擇背景主題風格">
+        <span>🎨</span> 更換背景風格
+      </button>
     </div>
   </div>
 
@@ -1154,6 +1618,10 @@
       <button class="tab-btn" data-tab="tab-tasks">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
         科目讀書任務與四象限優先級
+      </button>
+      <button class="tab-btn" data-tab="tab-review">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        學習成果與歷史回顧
       </button>
     </div>
 
@@ -1186,6 +1654,27 @@
         <div style="display: flex; gap: 8px;">
           <button class="btn-secondary" id="btn-export-schedule" title="列印或儲存為 PDF">🖨️ 列印週課表</button>
           <button class="btn-secondary" id="btn-reset-schedule" style="color: var(--danger);">🔄 重置預設範本</button>
+        </div>
+      </div>
+
+      <!-- 週次導航與未來規劃列 -->
+      <div class="week-navigator-bar">
+        <div class="week-nav-controls">
+          <button class="btn-week-nav" id="btn-prev-week" title="切換至上一週 (歷史回顧)">◀ 上一週</button>
+          <div class="week-display-badge">
+            <span class="week-icon">📅</span>
+            <span id="week-display-label">2026年 11/09 ~ 11/15 (第46週)</span>
+            <span id="week-tag-badge" class="week-tag-indicator">本週</span>
+          </div>
+          <button class="btn-week-nav" id="btn-next-week" title="切換至下一週 (未來規劃)">下一週 ▶</button>
+        </div>
+
+        <div class="week-quick-jumps">
+          <button class="btn-quick-week active" data-week-offset="0">📌 本週</button>
+          <button class="btn-quick-week" data-week-offset="1">下週計畫</button>
+          <button class="btn-quick-week" data-week-offset="2">第 3 週</button>
+          <button class="btn-quick-week" data-week-offset="3">第 4 週 (月度規劃)</button>
+          <button class="btn-secondary" id="btn-copy-from-current" style="font-size: 0.8rem; padding: 5px 12px;" title="將本週排程完整複製到目前檢視的週次">📋 複製本週計畫過來</button>
         </div>
       </div>
 
@@ -1394,6 +1883,66 @@
     </div>
   </section>
 
+  <!-- =============================================================
+       分頁三：學習歷程與成果回顧 (REVIEW & HISTORY)
+       ============================================================= -->
+  <section id="tab-review" class="page-section">
+    <!-- 總累積數據卡片 -->
+    <div class="review-stats-grid">
+      <div class="review-stat-card">
+        <div class="stat-icon-wrap" style="background:#eef2ff; color:#4338ca;">⏳</div>
+        <div>
+          <div class="stat-main-num" id="review-total-hours">0 小時</div>
+          <div class="stat-main-label">累計已完成自習時數</div>
+        </div>
+      </div>
+      <div class="review-stat-card">
+        <div class="stat-icon-wrap" style="background:#ecfdf5; color:#059669;">✅</div>
+        <div>
+          <div class="stat-main-num" id="review-task-progress">0%</div>
+          <div class="stat-main-label" id="review-task-count-label">讀書任務達成率 (0/0)</div>
+        </div>
+      </div>
+      <div class="review-stat-card">
+        <div class="stat-icon-wrap" style="background:#fef3c7; color:#d97706;">📅</div>
+        <div>
+          <div class="stat-main-num" id="review-week-count">0 週</div>
+          <div class="stat-main-label">已排程與回顧週數</div>
+        </div>
+      </div>
+      <div class="review-stat-card">
+        <div class="stat-icon-wrap" style="background:#fdf2f8; color:#db2777;">🏆</div>
+        <div>
+          <div class="stat-main-num" id="review-top-subject">數學</div>
+          <div class="stat-main-label">累計最投入學科</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 雙欄版面：左側各週回顧卡片，右側已完成任務成就追蹤 -->
+    <div class="review-content-layout">
+      <div class="review-panel">
+        <div class="review-panel-header">
+          <h3>📅 各週讀書回顧與心得省思 (跨週/跨月歷史)</h3>
+          <p>每週點擊完成狀態、寫下檢討心得，回顧每一週的努力與進步軌跡！</p>
+        </div>
+        <div id="review-weeks-list">
+          <!-- 透過 JS 動態建立各週卡片 -->
+        </div>
+      </div>
+
+      <div class="review-panel">
+        <div class="review-panel-header">
+          <h3>🎯 已達成的讀書任務軌跡 (成就清單)</h3>
+          <p>看到所有打勾完成的高中讀書任務，每一筆都是扎實累積！</p>
+        </div>
+        <div id="review-completed-tasks-list">
+          <!-- 透過 JS 動態建立完成任務清單 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <!-- 彈出視窗：編輯課表時段 -->
@@ -1465,6 +2014,74 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" id="btn-exam-cancel">取消</button>
       <button type="button" class="btn btn-primary" style="width: auto;" id="btn-exam-save">確認更新</button>
+    </div>
+  </div>
+</div>
+
+<!-- 彈出視窗：背景風格選擇器 -->
+<div class="modal-overlay" id="theme-modal">
+  <div class="modal-card" style="max-width: 640px;">
+    <h3 class="modal-title">🎨 選擇你喜歡的背景風格</h3>
+    <p class="modal-subtitle">自由切換專注自習氛圍，設定將自動儲存！</p>
+
+    <div class="theme-grid">
+      <div class="theme-card-option" data-theme="christmas">
+        <div class="theme-preview-bar" style="background: linear-gradient(135deg, #165b33, #991b1b); color: #fff;">🎄 ❄️</div>
+        <div class="theme-card-title">
+          <span>耶誕雪景</span>
+          <span class="active-check"></span>
+        </div>
+        <div class="theme-card-desc">節慶冬雪、彩色微光彩燈串、聖誕激勵氛圍</div>
+      </div>
+
+      <div class="theme-card-option" data-theme="galaxy">
+        <div class="theme-preview-bar" style="background: linear-gradient(135deg, #0f172a, #1e1b4b); color: #818cf8;">🌌 ✨</div>
+        <div class="theme-card-title">
+          <span>深邃星空</span>
+          <span class="active-check"></span>
+        </div>
+        <div class="theme-card-desc">靜謐深藍夜空微粒、護眼暗色模式、沉浸專注</div>
+      </div>
+
+      <div class="theme-card-option" data-theme="sakura">
+        <div class="theme-preview-bar" style="background: linear-gradient(135deg, #fff1f2, #fce7f3); color: #e11d48;">🌸 🍃</div>
+        <div class="theme-card-title">
+          <span>櫻花暖春</span>
+          <span class="active-check"></span>
+        </div>
+        <div class="theme-card-desc">粉櫻輕柔飄落、粉嫩明亮色系、舒緩讀書壓力</div>
+      </div>
+
+      <div class="theme-card-option" data-theme="forest">
+        <div class="theme-preview-bar" style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); color: #059669;">🌿 🌲</div>
+        <div class="theme-card-title">
+          <span>晨光綠意</span>
+          <span class="active-check"></span>
+        </div>
+        <div class="theme-card-desc">清新薄荷與森林綠調、護眼舒適、精神飽滿</div>
+      </div>
+
+      <div class="theme-card-option" data-theme="sunset">
+        <div class="theme-preview-bar" style="background: linear-gradient(135deg, #fef3c7, #fee2e2); color: #ea580c;">🌅 ☕</div>
+        <div class="theme-card-title">
+          <span>日落暖陽</span>
+          <span class="active-check"></span>
+        </div>
+        <div class="theme-card-desc">溫暖琥珀橙光、放學後黃金衝刺時段感</div>
+      </div>
+
+      <div class="theme-card-option" data-theme="classic">
+        <div class="theme-preview-bar" style="background: linear-gradient(135deg, #f8fafc, #e2e8f0); color: #4338ca;">☀️ 📖</div>
+        <div class="theme-card-title">
+          <span>經典純淨</span>
+          <span class="active-check"></span>
+        </div>
+        <div class="theme-card-desc">簡約白灰現代風、乾淨俐落、零干擾純粹自習</div>
+      </div>
+    </div>
+
+    <div class="modal-footer" style="margin-top: 24px;">
+      <button type="button" class="btn btn-primary" id="btn-theme-close" style="width: auto;">關閉視窗</button>
     </div>
   </div>
 </div>
@@ -1563,6 +2180,9 @@
   ];
 
   // 全域變數狀態
+  let allWeeksSchedule = {};
+  let weekNotes = {};
+  let currentWeekMonday = getMonday(new Date());
   let scheduleData = {};
   let taskList = [];
   let examTarget = {
@@ -1590,17 +2210,89 @@
     return formatLocalDate(d);
   }
 
+  function getMonday(d) {
+    const date = new Date(d);
+    const day = date.getDay();
+    const diff = date.getDate() - day + (day === 0 ? -6 : 1);
+    date.setDate(diff);
+    date.setHours(0, 0, 0, 0);
+    return date;
+  }
+
+  const THIS_WEEK_MONDAY = getMonday(new Date());
+
+  function getWeekKey(monday) {
+    return formatLocalDate(monday);
+  }
+
+  function getWeekInfo(monday) {
+    const sunday = new Date(monday);
+    sunday.setDate(sunday.getDate() + 6);
+    const mMonth = monday.getMonth() + 1;
+    const mDate = monday.getDate();
+    const sMonth = sunday.getMonth() + 1;
+    const sDate = sunday.getDate();
+    const year = monday.getFullYear();
+
+    const firstDayOfYear = new Date(year, 0, 1);
+    const pastDaysOfYear = (monday - firstDayOfYear) / 86400000;
+    const weekNum = Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+
+    const isCurrent = monday.getTime() === THIS_WEEK_MONDAY.getTime();
+    const isPast = monday.getTime() < THIS_WEEK_MONDAY.getTime();
+    const isFuture = monday.getTime() > THIS_WEEK_MONDAY.getTime();
+
+    const dayCols = DAYS.map((dayKey, idx) => {
+      const d = new Date(monday);
+      d.setDate(d.getDate() + idx);
+      const isToday = formatLocalDate(d) === formatLocalDate(new Date());
+      return {
+        dayKey,
+        label: DAY_LABELS[dayKey],
+        dateStr: `${d.getMonth() + 1}/${d.getDate()}`,
+        isToday,
+        isWeekend: (dayKey === 'sat' || dayKey === 'sun')
+      };
+    });
+
+    return {
+      key: getWeekKey(monday),
+      year,
+      weekNum,
+      label: `${year}年 ${mMonth}/${mDate} ~ ${sMonth}/${sDate} (第${weekNum}週)`,
+      isCurrent,
+      isPast,
+      isFuture,
+      dayCols
+    };
+  }
+
   // 初始化
   function init() {
     loadStorage();
     setupEventListeners();
+    setupThemeHandlers();
     renderAll();
     initTimerDisplay();
   }
 
   function loadStorage() {
-    const sSched = localStorage.getItem('hs_study_schedule');
-    scheduleData = sSched ? JSON.parse(sSched) : DEFAULT_SCHEDULE;
+    // 載入多週課表
+    const sAllWeeks = localStorage.getItem('hs_study_weeks_schedule');
+    if (sAllWeeks) {
+      allWeeksSchedule = JSON.parse(sAllWeeks);
+    } else {
+      const sSched = localStorage.getItem('hs_study_schedule');
+      const baseSched = sSched ? JSON.parse(sSched) : DEFAULT_SCHEDULE;
+      allWeeksSchedule = {
+        [getWeekKey(THIS_WEEK_MONDAY)]: baseSched
+      };
+    }
+
+    const sNotes = localStorage.getItem('hs_study_week_notes');
+    weekNotes = sNotes ? JSON.parse(sNotes) : {};
+
+    syncActiveSchedule();
 
     const sTasks = localStorage.getItem('hs_study_tasks');
     taskList = sTasks ? JSON.parse(sTasks) : DEFAULT_TASKS;
@@ -1613,10 +2305,26 @@
     }
 
     document.getElementById('task-date').value = formatLocalDate(new Date());
+
+    // 載入背景主題
+    const savedTheme = localStorage.getItem('hs_study_theme') || 'christmas';
+    applyTheme(savedTheme);
+  }
+
+  function syncActiveSchedule() {
+    const wk = getWeekKey(currentWeekMonday);
+    if (!allWeeksSchedule[wk]) {
+      allWeeksSchedule[wk] = {};
+    }
+    scheduleData = allWeeksSchedule[wk];
   }
 
   function saveStorage() {
+    const wk = getWeekKey(currentWeekMonday);
+    allWeeksSchedule[wk] = scheduleData;
+    localStorage.setItem('hs_study_weeks_schedule', JSON.stringify(allWeeksSchedule));
     localStorage.setItem('hs_study_schedule', JSON.stringify(scheduleData));
+    localStorage.setItem('hs_study_week_notes', JSON.stringify(weekNotes));
     localStorage.setItem('hs_study_tasks', JSON.stringify(taskList));
     localStorage.setItem('hs_exam_target', JSON.stringify(examTarget));
   }
@@ -1630,8 +2338,60 @@
 
         this.classList.add('active');
         const tabId = this.dataset.tab;
-        document.getElementById(tabId).classList.add('active');
+        const targetSec = document.getElementById(tabId);
+        if (targetSec) targetSec.classList.add('active');
+
+        if (tabId === 'tab-review') {
+          renderReviewTab();
+        }
       });
+    });
+
+    // 週次切換按鈕事件
+    document.getElementById('btn-prev-week').addEventListener('click', () => {
+      currentWeekMonday.setDate(currentWeekMonday.getDate() - 7);
+      syncActiveSchedule();
+      renderScheduleTable();
+      updateSummaries();
+    });
+
+    document.getElementById('btn-next-week').addEventListener('click', () => {
+      currentWeekMonday.setDate(currentWeekMonday.getDate() + 7);
+      syncActiveSchedule();
+      renderScheduleTable();
+      updateSummaries();
+    });
+
+    // 快速跳週按鈕 (本週、下週、第3週、第4週)
+    document.querySelectorAll('.btn-quick-week').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const offset = parseInt(this.dataset.weekOffset) || 0;
+        const targetM = new Date(THIS_WEEK_MONDAY);
+        targetM.setDate(targetM.getDate() + offset * 7);
+        currentWeekMonday = targetM;
+        syncActiveSchedule();
+        renderScheduleTable();
+        updateSummaries();
+      });
+    });
+
+    // 從本週複製計畫到檢視中的週次
+    document.getElementById('btn-copy-from-current').addEventListener('click', () => {
+      const thisWkKey = getWeekKey(THIS_WEEK_MONDAY);
+      const targetWkKey = getWeekKey(currentWeekMonday);
+      if (thisWkKey === targetWkKey) {
+        alert('目前檢視的已經是「本週」，無法複製到自己喔！請先切換至「下週」或其他未來週次。');
+        return;
+      }
+      const thisWkSched = allWeeksSchedule[thisWkKey] || DEFAULT_SCHEDULE;
+      if (confirm(`確定要將「本週」的排程設定完整複製到【${getWeekInfo(currentWeekMonday).label}】嗎？`)) {
+        allWeeksSchedule[targetWkKey] = JSON.parse(JSON.stringify(thisWkSched));
+        syncActiveSchedule();
+        saveStorage();
+        renderScheduleTable();
+        updateSummaries();
+        alert('🎉 已成功複製計畫！您可以直接在此週微調細節。');
+      }
     });
 
     // 課表點擊委託
@@ -1659,6 +2419,7 @@
       closeCellModal();
       renderScheduleTable();
       updateSummaries();
+      renderReviewTab();
     });
 
     document.getElementById('btn-cell-clear').addEventListener('click', function() {
@@ -1668,18 +2429,20 @@
         closeCellModal();
         renderScheduleTable();
         updateSummaries();
+        renderReviewTab();
       }
     });
 
     document.getElementById('btn-cell-cancel').addEventListener('click', closeCellModal);
 
-    // 重置課表
+    // 重置課表 (針對當前檢視週次)
     document.getElementById('btn-reset-schedule').addEventListener('click', function() {
-      if (confirm('確定要將課表重置為標準高中生示範範本嗎？')) {
+      if (confirm('確定要將目前檢視週次的課表重置為標準示範範本嗎？')) {
         scheduleData = JSON.parse(JSON.stringify(DEFAULT_SCHEDULE));
         saveStorage();
         renderScheduleTable();
         updateSummaries();
+        renderReviewTab();
       }
     });
 
@@ -1737,6 +2500,7 @@
       saveStorage();
       renderTasks();
       updateSummaries();
+      renderReviewTab();
 
       document.getElementById('task-title').value = '';
       document.getElementById('task-notes').value = '';
@@ -1751,8 +2515,70 @@
     document.getElementById('btn-timer-10').addEventListener('click', () => setTimer(10 * 60));
   }
 
+  // 主題選擇事件綁定
+  function setupThemeHandlers() {
+    const modal = document.getElementById('theme-modal');
+    const openBtn = document.getElementById('btn-theme-open');
+    const closeBtn = document.getElementById('btn-theme-close');
+
+    if (openBtn) {
+      openBtn.addEventListener('click', () => modal.classList.add('active'));
+    }
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+
+    document.querySelectorAll('.theme-card-option').forEach(card => {
+      card.addEventListener('click', function() {
+        const theme = this.dataset.theme;
+        applyTheme(theme);
+      });
+    });
+  }
+
+  function applyTheme(themeKey) {
+    const themes = ['christmas', 'galaxy', 'sakura', 'forest', 'sunset', 'classic'];
+    themes.forEach(t => document.body.classList.remove(`theme-${t}`));
+    document.body.classList.add(`theme-${themeKey}`);
+    localStorage.setItem('hs_study_theme', themeKey);
+
+    document.querySelectorAll('.theme-card-option').forEach(el => {
+      const isActive = el.dataset.theme === themeKey;
+      el.classList.toggle('active', isActive);
+      const checkEl = el.querySelector('.active-check');
+      if (checkEl) checkEl.textContent = isActive ? '✓' : '';
+    });
+
+    if (window.switchParticleTheme) {
+      window.switchParticleTheme(themeKey);
+    }
+  }
+
   // 渲染每週表格
   function renderScheduleTable() {
+    const weekInfo = getWeekInfo(currentWeekMonday);
+    updateWeekNavDisplay(weekInfo);
+
+    // 更新課表標題列真實日期與今天高光
+    const theadTr = document.querySelector('#schedule-table thead tr');
+    if (theadTr) {
+      theadTr.innerHTML = `<th class="time-col">時段 / 星期</th>`;
+      weekInfo.dayCols.forEach(col => {
+        const th = document.createElement('th');
+        if (col.isWeekend) th.className = 'weekend';
+        if (col.isToday) th.classList.add('col-today');
+        th.innerHTML = `
+          <div>${col.label} (${col.dateStr})</div>
+          ${col.isToday ? '<span class="today-pill">☀️ 今天</span>' : ''}
+        `;
+        theadTr.appendChild(th);
+      });
+    }
+
     const tbody = document.getElementById('schedule-body');
     tbody.innerHTML = '';
 
@@ -1766,24 +2592,23 @@
       tr.appendChild(th);
 
       // 各星期天
-      DAYS.forEach(day => {
+      weekInfo.dayCols.forEach(col => {
         const td = document.createElement('td');
         td.className = 'schedule-cell';
         td.dataset.slot = slot.id;
-        td.dataset.day = day;
-
-        const isWeekend = (day === 'sat' || day === 'sun');
+        td.dataset.day = col.dayKey;
+        if (col.isToday) td.classList.add('col-today');
 
         // 如果該時段是六日專用，平日顯示不可用
-        if (slot.weekendOnly && !isWeekend) {
-          td.style.background = '#f1f5f9';
+        if (slot.weekendOnly && !col.isWeekend) {
+          td.style.background = 'rgba(241, 245, 249, 0.6)';
           td.style.cursor = 'not-allowed';
           td.innerHTML = `<div class="cell-empty" style="color: #cbd5e1;">平日學校作息</div>`;
           tr.appendChild(td);
           return;
         }
 
-        const cellKey = `${day}-${slot.id}`;
+        const cellKey = `${col.dayKey}-${slot.id}`;
         const item = scheduleData[cellKey];
 
         if (item) {
@@ -1792,7 +2617,9 @@
             <div class="cell-item ${sMeta.bgClass}">
               <div class="cell-item-header">
                 <span class="cell-badge">${sMeta.name}</span>
-                <span style="font-size: 0.68rem; opacity: 0.9;">${item.status === 'done' ? '✅' : '⏳'}</span>
+                <span style="font-size: 0.72rem; cursor: pointer;" title="點擊切換完成狀態" onclick="event.stopPropagation(); toggleSlotStatus('${cellKey}')">
+                  ${item.status === 'done' ? '✅ 完成' : '⏳ 規劃'}
+                </span>
               </div>
               <div class="cell-content">${escapeHTML(item.title)}</div>
               <div class="cell-duration">⏱️ ${item.duration} 分鐘</div>
@@ -1813,6 +2640,42 @@
     });
   }
 
+  function updateWeekNavDisplay(weekInfo) {
+    const labelEl = document.getElementById('week-display-label');
+    const badgeEl = document.getElementById('week-tag-badge');
+    if (labelEl) labelEl.textContent = weekInfo.label;
+    if (badgeEl) {
+      if (weekInfo.isCurrent) {
+        badgeEl.textContent = '本週';
+        badgeEl.className = 'week-tag-indicator';
+      } else if (weekInfo.isPast) {
+        badgeEl.textContent = '歷史週次';
+        badgeEl.className = 'week-tag-indicator week-tag-past';
+      } else {
+        badgeEl.textContent = '未來規劃';
+        badgeEl.className = 'week-tag-indicator week-tag-future';
+      }
+    }
+
+    // 快選按鈕 active 樣式更新
+    document.querySelectorAll('.btn-quick-week').forEach(btn => {
+      const offset = parseInt(btn.dataset.weekOffset) || 0;
+      const targetM = new Date(THIS_WEEK_MONDAY);
+      targetM.setDate(targetM.getDate() + offset * 7);
+      btn.classList.toggle('active', targetM.getTime() === currentWeekMonday.getTime());
+    });
+  }
+
+  window.toggleSlotStatus = function(cellKey) {
+    if (scheduleData[cellKey]) {
+      scheduleData[cellKey].status = scheduleData[cellKey].status === 'done' ? 'planned' : 'done';
+      saveStorage();
+      renderScheduleTable();
+      updateSummaries();
+      renderReviewTab();
+    }
+  };
+
   // 彈出時段編輯視窗
   function openCellModal(day, slotId) {
     const slot = TIME_SLOTS.find(s => s.id === slotId);
@@ -1821,7 +2684,11 @@
 
     editingCellKey = `${day}-${slotId}`;
     const dayLabel = DAY_LABELS[day];
-    document.getElementById('modal-cell-subtitle').textContent = `${dayLabel}【${slot.name}】(${slot.time})`;
+    const weekInfo = getWeekInfo(currentWeekMonday);
+    const colInfo = weekInfo.dayCols.find(c => c.dayKey === day);
+    const dateText = colInfo ? ` (${colInfo.dateStr})` : '';
+
+    document.getElementById('modal-cell-subtitle').textContent = `${weekInfo.label}・${dayLabel}${dateText}【${slot.name}】(${slot.time})`;
 
     const existing = scheduleData[editingCellKey];
     if (existing) {
@@ -1829,24 +2696,22 @@
       document.getElementById('cell-title').value = existing.title;
       document.getElementById('cell-duration').value = existing.duration;
       document.getElementById('cell-status').value = existing.status || 'planned';
-      document.getElementById('btn-cell-clear').style.display = 'inline-block';
     } else {
       document.getElementById('cell-subject').value = 'math';
       document.getElementById('cell-title').value = '';
       document.getElementById('cell-duration').value = slot.defaultMin;
       document.getElementById('cell-status').value = 'planned';
-      document.getElementById('btn-cell-clear').style.display = 'none';
     }
 
     document.getElementById('cell-modal').classList.add('active');
   }
 
   function closeCellModal() {
-    document.getElementById('cell-modal').classList.remove('active');
     editingCellKey = null;
+    document.getElementById('cell-modal').classList.remove('active');
   }
 
-  // 渲染任務與四象限
+  // 渲染四象限讀書任務
   function renderTasks() {
     const filterSub = document.getElementById('filter-task-subject').value;
 
@@ -1854,28 +2719,22 @@
       return (filterSub === 'all' || t.subject === filterSub);
     });
 
-    const groups = { p1: [], p2: [], p3: [], p4: [] };
-    filtered.forEach(t => {
-      if (groups[t.priority]) groups[t.priority].push(t);
-      else groups.p2.push(t);
-    });
-
     ['p1', 'p2', 'p3', 'p4'].forEach(pKey => {
-      const listEl = document.getElementById(`list-${pKey}`);
-      const countEl = document.getElementById(`count-${pKey}`);
-      countEl.textContent = groups[pKey].length;
+      const pTasks = filtered.filter(t => t.priority === pKey);
+      document.getElementById(`count-${pKey}`).textContent = pTasks.length;
 
-      if (groups[pKey].length === 0) {
-        listEl.innerHTML = `<div class="empty-state">尚無此優先度任務</div>`;
+      const container = document.getElementById(`list-${pKey}`);
+      if (pTasks.length === 0) {
+        container.innerHTML = `<div class="empty-state">尚無此優先級任務</div>`;
       } else {
-        listEl.innerHTML = groups[pKey].map(t => {
+        container.innerHTML = pTasks.map(t => {
           const sMeta = SUBJECT_MAP[t.subject] || SUBJECT_MAP.math;
           return `
-            <div class="task-card ${t.completed ? 'completed' : ''}" id="${t.id}">
+            <div class="task-item ${t.completed ? 'completed' : ''}" id="${t.id}">
               <input type="checkbox" class="task-checkbox" ${t.completed ? 'checked' : ''} onchange="toggleTaskDone('${t.id}')">
-              <div class="task-content">
-                <div class="task-header">
-                  <span class="subject-pill" style="background: ${sMeta.color}; font-size: 0.68rem; padding: 1px 6px;">${sMeta.name}</span>
+              <div class="task-info">
+                <div class="task-title-row">
+                  <span class="subject-pill ${sMeta.bgClass}">${sMeta.name}</span>
                   <span class="task-text">${escapeHTML(t.title)}</span>
                 </div>
                 ${t.notes ? `<div class="task-notes">${escapeHTML(t.notes)}</div>` : ''}
@@ -1902,6 +2761,7 @@
       saveStorage();
       renderTasks();
       updateSummaries();
+      renderReviewTab();
     }
   };
 
@@ -1911,6 +2771,7 @@
       saveStorage();
       renderTasks();
       updateSummaries();
+      renderReviewTab();
     }
   };
 
@@ -1980,14 +2841,13 @@
     const targetTime = new Date(year, month - 1, day).getTime();
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const diffDays = Math.round((targetTime - today.getTime()) / (1000 * 60 * 60 * 24));
 
+    const diffDays = Math.round((targetTime - today.getTime()) / (1000 * 60 * 60 * 24));
     document.getElementById('exam-countdown-days').textContent = diffDays > 0 ? diffDays : 0;
   }
 
-  // 統計數據計算
+  // 統計數據計算 (依據目前檢視週次)
   function updateSummaries() {
-    // 每週表格時數累計
     let totalMin = 0;
     let stemMin = 0;
     let langMin = 0;
@@ -2020,6 +2880,162 @@
     document.getElementById('stat-today-time').textContent = `${todayMinutes} 分鐘`;
   }
 
+  // 學習成果與歷史回顧渲染
+  function renderReviewTab() {
+    let totalDoneMinutes = 0;
+    const subjectMinutes = {};
+
+    Object.values(allWeeksSchedule).forEach(wkSched => {
+      Object.values(wkSched).forEach(item => {
+        if (item.status === 'done') {
+          const m = parseInt(item.duration) || 0;
+          totalDoneMinutes += m;
+          subjectMinutes[item.subject] = (subjectMinutes[item.subject] || 0) + m;
+        }
+      });
+    });
+
+    // 加上四象限完成任務
+    taskList.filter(t => t.completed).forEach(t => {
+      const m = parseInt(t.duration) || 0;
+      totalDoneMinutes += m;
+      subjectMinutes[t.subject] = (subjectMinutes[t.subject] || 0) + m;
+    });
+
+    const totalDoneHours = (totalDoneMinutes / 60).toFixed(1);
+    const reviewHoursEl = document.getElementById('review-total-hours');
+    if (reviewHoursEl) reviewHoursEl.textContent = `${totalDoneHours} 小時`;
+
+    // 2. 任務達成率
+    const doneTasks = taskList.filter(t => t.completed);
+    const taskRate = taskList.length > 0 ? Math.round((doneTasks.length / taskList.length) * 100) : 0;
+    const progressEl = document.getElementById('review-task-progress');
+    const countLabelEl = document.getElementById('review-task-count-label');
+    if (progressEl) progressEl.textContent = `${taskRate}%`;
+    if (countLabelEl) countLabelEl.textContent = `任務完成率 (${doneTasks.length}/${taskList.length} 筆)`;
+
+    // 3. 最投入科目
+    let topSub = 'math';
+    let maxM = -1;
+    Object.entries(subjectMinutes).forEach(([sub, m]) => {
+      if (m > maxM) {
+        maxM = m;
+        topSub = sub;
+      }
+    });
+    const topSubMeta = SUBJECT_MAP[topSub] || SUBJECT_MAP.math;
+    const topSubEl = document.getElementById('review-top-subject');
+    if (topSubEl) topSubEl.textContent = `${topSubMeta.name} (${(maxM > 0 ? maxM / 60 : 0).toFixed(1)}h)`;
+
+    // 4. 週次回顧清單
+    const weekKeys = Object.keys(allWeeksSchedule);
+    const thisWkKey = getWeekKey(THIS_WEEK_MONDAY);
+    if (!weekKeys.includes(thisWkKey)) weekKeys.push(thisWkKey);
+    weekKeys.sort((a, b) => b.localeCompare(a));
+
+    const weekCountEl = document.getElementById('review-week-count');
+    if (weekCountEl) weekCountEl.textContent = `${weekKeys.length} 週`;
+
+    const weeksListEl = document.getElementById('review-weeks-list');
+    if (weeksListEl) {
+      weeksListEl.innerHTML = weekKeys.map(wkKey => {
+        const [y, m, d] = wkKey.split('-').map(Number);
+        const monday = new Date(y, m - 1, d);
+        const info = getWeekInfo(monday);
+        const sched = allWeeksSchedule[wkKey] || {};
+        const items = Object.values(sched);
+        const totalItems = items.length;
+        const doneItems = items.filter(x => x.status === 'done').length;
+        const totalM = items.reduce((acc, x) => acc + (parseInt(x.duration) || 0), 0);
+        const doneM = items.filter(x => x.status === 'done').reduce((acc, x) => acc + (parseInt(x.duration) || 0), 0);
+        const pct = totalItems > 0 ? Math.round((doneItems / totalItems) * 100) : 0;
+        const note = weekNotes[wkKey] || '';
+        const isCurrent = info.isCurrent;
+
+        let badgeHtml = '<span class="week-tag-indicator week-tag-future">未來規劃</span>';
+        if (isCurrent) badgeHtml = '<span class="week-tag-indicator">本週進行中</span>';
+        else if (info.isPast) badgeHtml = '<span class="week-tag-indicator week-tag-past">已結束</span>';
+
+        return `
+          <div class="week-history-card ${isCurrent ? 'current' : ''}">
+            <div class="week-history-card-header">
+              <div>
+                <span class="week-history-title">${info.label}</span>
+                ${badgeHtml}
+              </div>
+              <button class="btn-secondary" style="font-size: 0.78rem; padding: 4px 10px;" onclick="jumpToWeek('${wkKey}')">
+                🔍 前往課表
+              </button>
+            </div>
+
+            <div style="font-size: 0.85rem; color: var(--text-muted); display: flex; justify-content: space-between; margin-top: 4px;">
+              <span>自習完成進度：<strong>${doneItems} / ${totalItems}</strong> 個時段 (${pct}%)</span>
+              <span>累計完成：<strong>${(doneM / 60).toFixed(1)} / ${(totalM / 60).toFixed(1)}</strong> 小時</span>
+            </div>
+
+            <div class="week-progress-bar-bg">
+              <div class="week-progress-bar-fill" style="width: ${pct}%;"></div>
+            </div>
+
+            <div style="margin-top: 8px;">
+              <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">📝 本週讀書省思與回顧心得筆記：</label>
+              <textarea class="week-journal-input" placeholder="紀錄這週哪些科目有進步、哪裡分心了、下週段考目標..." onchange="saveWeekNote('${wkKey}', this.value)">${escapeHTML(note)}</textarea>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 5. 已完成任務成就清單
+    const completedTasksEl = document.getElementById('review-completed-tasks-list');
+    if (completedTasksEl) {
+      if (doneTasks.length === 0) {
+        completedTasksEl.innerHTML = `<div class="empty-state">目前尚未有完成的任務，在四象限中打勾即可記錄在此！</div>`;
+      } else {
+        completedTasksEl.innerHTML = doneTasks.map(t => {
+          const sMeta = SUBJECT_MAP[t.subject] || SUBJECT_MAP.math;
+          return `
+            <div class="completed-task-item">
+              <div style="display:flex; align-items:center; gap: 8px;">
+                <span style="color: var(--success); font-weight: bold; font-size: 1.1rem;">✓</span>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.9rem; text-decoration: line-through; opacity: 0.85;">${escapeHTML(t.title)}</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted); display:flex; gap: 8px; margin-top: 2px;">
+                    <span class="subject-pill ${sMeta.bgClass}">${sMeta.name}</span>
+                    <span>⏱️ ${t.duration} 分鐘</span>
+                    ${t.date ? `<span>📅 ${t.date}</span>` : ''}
+                  </div>
+                </div>
+              </div>
+              <button class="action-icon-btn" title="恢復為未完成" onclick="toggleTaskDone('${t.id}')">↩</button>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+  }
+
+  window.saveWeekNote = function(wkKey, noteText) {
+    weekNotes[wkKey] = noteText;
+    localStorage.setItem('hs_study_week_notes', JSON.stringify(weekNotes));
+  };
+
+  window.jumpToWeek = function(wkKey) {
+    const [y, m, d] = wkKey.split('-').map(Number);
+    currentWeekMonday = new Date(y, m - 1, d);
+    syncActiveSchedule();
+    renderScheduleTable();
+    updateSummaries();
+
+    // 切換至課表 Tab
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+    const schedBtn = document.querySelector('[data-tab="tab-schedule"]');
+    if (schedBtn) schedBtn.classList.add('active');
+    const schedSec = document.getElementById('tab-schedule');
+    if (schedSec) schedSec.classList.add('active');
+  };
+
   function escapeHTML(str) {
     if (!str) return '';
     return str.replace(/[&<>'"]/g, tag => ({
@@ -2036,14 +3052,15 @@
     renderScheduleTable();
     renderTasks();
     updateSummaries();
+    renderReviewTab();
   }
 
   window.addEventListener('DOMContentLoaded', init);
 
   /* ===================================================
-     聖誕飄雪動態特效與開關控制 (CHRISTMAS SNOW SCRIPT)
+     多主題背景粒子動態特效與開關 (PARTICLE SYSTEM)
      =================================================== */
-  (function initChristmasSnow() {
+  (function initParticleSystem() {
     const canvas = document.getElementById('snow-canvas');
     const toggleBtn = document.getElementById('snow-toggle');
     const toggleText = document.getElementById('snow-toggle-text');
@@ -2052,8 +3069,9 @@
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
-    let isSnowing = localStorage.getItem('study_snow_enabled') !== 'false';
+    let isParticlesEnabled = localStorage.getItem('study_particles_enabled') !== 'false';
     let animationId = null;
+    let currentTheme = localStorage.getItem('hs_study_theme') || 'christmas';
 
     function resize() {
       width = canvas.width = window.innerWidth;
@@ -2061,54 +3079,155 @@
     }
     window.addEventListener('resize', resize);
 
-    const flakes = [];
-    const FLAKE_COUNT = Math.min(85, Math.floor(window.innerWidth / 16));
+    let particles = [];
 
-    for (let i = 0; i < FLAKE_COUNT; i++) {
-      flakes.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: Math.random() * 2.8 + 1,
-        d: Math.random() * FLAKE_COUNT,
-        speed: Math.random() * 0.9 + 0.45,
-        drift: (Math.random() - 0.5) * 0.5,
-        opacity: Math.random() * 0.6 + 0.35
-      });
+    function createParticlesForTheme(theme) {
+      particles = [];
+      const count = Math.min(80, Math.floor(window.innerWidth / 18));
+
+      for (let i = 0; i < count; i++) {
+        if (theme === 'galaxy') {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: Math.random() * 2 + 0.6,
+            color: Math.random() > 0.4 ? 'rgba(255,255,255,' : (Math.random() > 0.5 ? 'rgba(129,140,248,' : 'rgba(192,132,252,'),
+            speed: Math.random() * 0.2 + 0.05,
+            twinkle: Math.random() * Math.PI,
+            opacity: Math.random() * 0.7 + 0.3
+          });
+        } else if (theme === 'sakura') {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: Math.random() * 4 + 2,
+            speed: Math.random() * 0.8 + 0.4,
+            drift: Math.random() * 0.8 + 0.2,
+            rotation: Math.random() * Math.PI,
+            rotSpeed: (Math.random() - 0.5) * 0.03,
+            color: 'rgba(244, 114, 182,',
+            opacity: Math.random() * 0.6 + 0.3
+          });
+        } else if (theme === 'forest') {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: Math.random() * 2.5 + 1,
+            speed: Math.random() * 0.5 + 0.2,
+            drift: (Math.random() - 0.5) * 0.4,
+            color: 'rgba(52, 211, 153,',
+            opacity: Math.random() * 0.5 + 0.2
+          });
+        } else if (theme === 'sunset') {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: Math.random() * 2.5 + 1,
+            speed: Math.random() * 0.6 + 0.3,
+            drift: (Math.random() - 0.5) * 0.5,
+            color: 'rgba(251, 191, 36,',
+            opacity: Math.random() * 0.5 + 0.3
+          });
+        } else {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: Math.random() * 2.8 + 1,
+            speed: Math.random() * 0.9 + 0.45,
+            drift: (Math.random() - 0.5) * 0.5,
+            d: Math.random() * count,
+            color: 'rgba(255, 255, 255,',
+            opacity: Math.random() * 0.6 + 0.35
+          });
+        }
+      }
     }
 
+    createParticlesForTheme(currentTheme);
+
     let angle = 0;
-    function renderSnow() {
-      if (!isSnowing) return;
+    function renderLoop() {
+      if (!isParticlesEnabled) return;
       ctx.clearRect(0, 0, width, height);
       angle += 0.01;
 
-      for (let i = 0; i < flakes.length; i++) {
-        const f = flakes[i];
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(255, 255, 255, ${f.opacity})`;
-        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
-        ctx.fill();
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
 
-        f.y += f.speed;
-        f.x += Math.sin(angle + f.d) * 0.65 + f.drift;
+        if (currentTheme === 'galaxy') {
+          p.twinkle += 0.03;
+          const currentAlpha = Math.abs(Math.sin(p.twinkle)) * p.opacity;
+          ctx.beginPath();
+          ctx.fillStyle = `${p.color}${currentAlpha})`;
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
 
-        if (f.y > height + 6) {
-          f.y = -6;
-          f.x = Math.random() * width;
+          p.y -= p.speed;
+          if (p.y < -5) {
+            p.y = height + 5;
+            p.x = Math.random() * width;
+          }
+        } else if (currentTheme === 'sakura') {
+          p.rotation += p.rotSpeed;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation);
+          ctx.beginPath();
+          ctx.fillStyle = `${p.color}${p.opacity})`;
+          ctx.ellipse(0, 0, p.r * 1.5, p.r * 0.8, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+
+          p.y += p.speed;
+          p.x += Math.sin(angle + i) * 0.6 + p.drift;
+
+          if (p.y > height + 10) {
+            p.y = -10;
+            p.x = Math.random() * width;
+          }
+          if (p.x > width + 10) p.x = -10;
+        } else {
+          ctx.beginPath();
+          ctx.fillStyle = `${p.color}${p.opacity})`;
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+
+          p.y += p.speed;
+          p.x += Math.sin(angle + (p.d || i)) * 0.65 + p.drift;
+
+          if (p.y > height + 6) {
+            p.y = -6;
+            p.x = Math.random() * width;
+          }
+          if (p.x > width + 6) p.x = -6;
+          if (p.x < -6) p.x = width + 6;
         }
-        if (f.x > width + 6) f.x = -6;
-        if (f.x < -6) f.x = width + 6;
       }
-      animationId = requestAnimationFrame(renderSnow);
+      animationId = requestAnimationFrame(renderLoop);
     }
 
-    function updateSnowState(enabled) {
-      isSnowing = enabled;
-      localStorage.setItem('study_snow_enabled', enabled ? 'true' : 'false');
+    function updateToggleLabel() {
+      if (!toggleText) return;
+      const statusText = isParticlesEnabled ? '開' : '關';
+      if (currentTheme === 'christmas') {
+        toggleText.textContent = `❄️ 飄雪：${statusText}`;
+      } else if (currentTheme === 'galaxy') {
+        toggleText.textContent = `✨ 星光：${statusText}`;
+      } else if (currentTheme === 'sakura') {
+        toggleText.textContent = `🌸 櫻花：${statusText}`;
+      } else {
+        toggleText.textContent = `✨ 特效：${statusText}`;
+      }
+    }
+
+    function updateState(enabled) {
+      isParticlesEnabled = enabled;
+      localStorage.setItem('study_particles_enabled', enabled ? 'true' : 'false');
+      updateToggleLabel();
+
       if (enabled) {
         canvas.style.display = 'block';
-        if (toggleText) toggleText.textContent = '飄雪：開';
-        if (!animationId) animationId = requestAnimationFrame(renderSnow);
+        if (!animationId) animationId = requestAnimationFrame(renderLoop);
       } else {
         if (animationId) {
           cancelAnimationFrame(animationId);
@@ -2116,18 +3235,24 @@
         }
         ctx.clearRect(0, 0, width, height);
         canvas.style.display = 'none';
-        if (toggleText) toggleText.textContent = '飄雪：關';
       }
     }
 
+    window.switchParticleTheme = function(theme) {
+      currentTheme = theme;
+      createParticlesForTheme(theme);
+      updateToggleLabel();
+    };
+
     if (toggleBtn) {
       toggleBtn.addEventListener('click', () => {
-        updateSnowState(!isSnowing);
+        updateState(!isParticlesEnabled);
       });
     }
 
-    updateSnowState(isSnowing);
+    updateState(isParticlesEnabled);
   })();
+
 </script>
 </body>
 </html>
